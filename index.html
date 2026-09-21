@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>X8 OPEN CHECK | オープン前チェック</title>
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22X8%20OPEN%20CHECK%22%2C%22short_name%22%3A%22OPEN%20CHECK%22%2C%22description%22%3A%22%E5%96%B6%E6%A5%AD%E9%96%8B%E5%A7%8B%E5%89%8D%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%88%E3%82%92%E3%82%B9%E3%82%BF%E3%83%83%E3%83%95%E5%85%A8%E5%93%A1%E3%81%A7%E5%85%B1%E6%9C%89%22%2C%22start_url%22%3A%22.%22%2C%22scope%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22portrait%22%2C%22background_color%22%3A%22%23131019%22%2C%22theme_color%22%3A%22%23131019%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAFkklEQVR4nO3dy20cVxRF0dOEAxCgkbJwFI7G4TgaR%2BEsOBLADOSB2XSz2VVdn/e59569hrYhFaCz61WXSPOiYL5/%2B/Fr9jWgn59vr5fZ13Br6sUwdkhzoxj%2BGzN6rBkdw7DfjOFjj1EhdP9NGD7O6B1Ct1%2Bc4aOlXiE0/0UZPnpqHcJLy1%2BM8aO31htrUhPDxwwtToPTJwDjxywttncqAMaP2c5u8HAAjB9RnNnioQAYP6I5usndATB%2BRHVkm7sCYPyIbu9GNwfA%2BJHFnq1uCoDxI5utm30aAONHVlu22/RLIYBsVgPg7o/snm14MQDGjyrWtswjEKw9DIC7P6pZ2jQnAKx9CYC7P6p6tG1OAFj7FAB3f1R3v3FOAFj7CIC7P1zcbp0TANYIANZeJB5/4Oe6eU4AWCMAWCMAWCMAWLvwARjOOAFgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBg7bfZF4C8/v7r94f//I8//xl6HWfwDTHYbWn49zKEwCMQdtk6/r3/7SwEgM2ODDp6BASATc4MOXIEBABrBICnWtzBo54CBIBVUYfbCgHAGgFgUfW7v0QAWOAwfokA8IDL%2BCUCwJ1e44/6ZREEgA9Od/4rAkB3Ue/%2BEgHgndujzxUBwHb8Et8QY6/H%2BDMM/4oTwJjjh957BGDK%2BbHnFgGgmWzjlwjAkvtz/y0CMMP4PyMAI4z/KwIwwRufxwjAAG98lhEADqkwfokAyuO5fx0BFMb4nyOAohj/NgRQEG98tiOAYnjjsw8B4Kmq45cIoBSe%2B/cjgCIY/zEEUADjP44AkuONzzkEkBhvfM4jAHziNH6JANLiub8NAkiI8bdT4v8LVOEHNm/F%2BNtKHcCzMVz/fZU/YN74tJf2EajaD2x%2Bhjc%2BfaQMoOIPbJ7BffxSwgCq/sDmNTz395MugLOyRcD4%2B0oVQKsxZImA8feXKoCWokcQ/fqqsA1Aijsy3viMYx2AFDeC1hj/Y/YBSLEi4Ll/LAJ4FyECxj9eqgB6/2HOjIDxz5EqgBFmRBDh9HGVLoARd7WRg%2BSNz1zpApDqRdAa498uZQBSjQh47p8vbQBS7ggYfwypA5ByRsD440gfgJQrgsyfLSoqEYCUIwLe%2BMRTJgApRwStMf5zSgUgxY2A5/6YygUgxYuA8cdVMgApTgSMP7ayAUjzI4j2eQFflQ5AmhcBb3xyKB%2BANP8kaIXxt2cRgDQ2Ap7787h8//bj1%2ByLGCnjcznj78fmBLjKNqZs15uNXQASo8L/LAOQckSQ4Rqzsw1Aij2wyNdWiXUAUsyhRbymquwDkGINLtK1OCCAdxGGF%2BEa3BDADQbohwDuzIqA%2BOYggAdGj5Hxz0MAC0aNkvHPRQAreo%2BT8c9HAE/0Ginjj4EANmCsdRHARi0jIKg4CGCHFsNl/LEQwE5nBsz44yGAA44MmfHHRAAH7Rk044/L7nuCe1j6PmOGHx8BwBqPQLBGALBGALBGALBGALBGALBGALBGALBGALBGALBGALBGALD28vPt9TL7IoAZfr69XjgBYI0AYI0AYI0AYO1F%2Bu/DwOwLAUa6bp4TANYIANY%2BAuAxCC5ut84JAGufAuAUQHX3G%2BcEgLUvAXAKoKpH2%2BYEgLWHAXAKoJqlTXMCwNpiAJwCqGJty6snABEgu2cb5hEI1p4GwCmArLZsd9MJQATIZutmNz8CEQGy2LPVXZ8BiADR7d3o7g/BRICojmzz0FsgIkA0Rzd5%2BDUoESCKM1s89fcARIDZzm7w9F%2BEEQFmabG9puPlh25jhJY33aZfCsFpgN5ab6zbYDkN0FKvm2v3OzYh4IzeTxXDHlkIAXuMepwe/sxOCFgz%2BnPk1A%2BtxABp7suTcG9tiKK2aG8K/wXU8wHS4QKB8gAAAABJRU5ErkJggg%3D%3D%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image/png%22%2C%22purpose%22%3A%22any%22%7D%2C%7B%22src%22%3A%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAASHElEQVR4nO3cy3HkVrqFUVAhAyqiRuWFrJA1MqetaSvkhUaKkAfVAzZVWWQyn%2Bfxn7PXGt%2B4jQRS2B%2BQlF4OSvr65dv32ccA0MLf//z1MvsY%2BMhFmcTAA7wSCHM46QMYe4D7iIL%2BnOAODD5AW4KgPSe0AYMPMJYgeJ4T%2BCCjD1CDGHiMk3YHow9Qmxi4nRN1hdEHWJMYuMzJ%2BYThB9iDEDjPSTlh9AH2JgZ%2BcCIOww%2BQRgiEB4DhB8iWHAKRH9zwA3AqMQSiPrDhB%2BCSpBCI%2BKCGH4B7JITAL7MPoDfjD8C9ErZj28JJuHgA9Lfr24DtPpThB6CH3UJgq58AjD8Avey2MVvUzG4XBYDadngbsPwbAOMPwGg7bM/SAbDDBQBgTatv0JKvMFY/6QDsZcWfBJZ7A2D8AahmxW1aKgBWPMEAZFhto5Z4ZbHaSQUg2wo/CZR/A2D8AVjNCttVOgBWOIEAcE71DSsbANVPHABcU3nLSgZA5RMGAPeoumnlAqDqiQKAR1XctlIBUPEEAUAL1TauTABUOzEA0FqlrSsRAJVOCAD0VGXzpgdAlRMBAKNU2L6pAVDhBADADLM3cFoAzP7gADDbzC2cEgDGHwBezdrE4QFg/AHgZzO2cWgAGH8AOG/0Rg4LAOMPAJeN3MohAWD8AeA2ozZz%2Bn8HAAAYr3sAePoHgPuM2M6uAWD8AeAxvTe0WwAYfwB4Ts8t9TcAABCoSwB4%2BgeANnptavMAMP4A0FaPbW0aAMYfAPpovbH%2BBgAAAjULAE//ANBXy61tEgDGHwDGaLW5fgIAgEBPB4CnfwAYq8X2egMAAIGeCgBP/wAwx7Mb/HAAGH8AmOuZLfYTAAAEeigAPP0DQA2PbrI3AAAQ6O4A8PQPALU8ss3eAABAoLsCwNM/ANR070Z7AwAAgW4OAE//AFDbPVvtDQAABLopADz9A8Aabt1sbwAAIJAAAIBAVwPA638AWMst2%2B0NAAAEuhgAnv4BYE3XNtwbAAAIJAAAINCnAeD1PwCs7dKWewMAAIEEAAAEOhsAXv8DwB4%2B23RvAAAgkAAAgEAfAsDrfwDYy7lt9wYAAAIJAAAIJAAAINBPAeD3fwDY0/uN9wYAAAIJAAAIJAAAINC/AeD3fwDY2%2BnWewMAAIEEAAAEEgAAEEgAAECgX47DHwACQIq3zfcGAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAINCL/wYAAOTxBgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAv06%2BwAAmOe///nt6v/N73/82f04GO/l65dv32cfBABj3DL41wiCPQgAgAAthv89IbA2AQCwsR7D/54QWJM/AgTY1IjxH/m/Q1sCAGBDo0dZBKzHTwAAG6kwxH4SWIM3AACbqDD%2Bx1HnOLhMAABAIAEAsIFqT93VjoePBADA4qqObdXj4pUAAFhY9ZGtfnzJBADAoowrzxAAAHQlVGoSAAALMqo8SwAALGbF8V/xmHcnAAAWYkhpRQAALML405IAAFiA8ac1AQDAECKmFgEAUJzhpAcBAFCY8acXAQBQlPGnJwEAUJDxpzcBAFCM8WcEAQAAgQQAQCGe/hlFAAAUYfwZSQAAFJAw/r//8efsQ%2BCEAACYLGH8qUcAAExk/JlFAABMYvyZSQAA0J3f/%2BsRAAATePpnNgEAMFja%2BHv6r0kAAAyUNv7UJQAABkkcf0//dQkAgAGMP9UIAACaM/71CQCAzhKf/qlPAAB0lDj%2Bnv7X8OvsAwDYVdr4G/61eAMA0EHa%2BLMeAQDQWOL4e/pfjwAA4CnGf00CAKChtKd/478uAQDQiPFnJQIAoAHjz2oEAMCT0safPQgAgCckjr%2Bn/z0IAABuZvz3IQAAHpT29G/89yIAAB5g/FmdAAC4k/FnBwIA4A5p48%2B%2BBADAjRLH39P/vgQAwA2MP7sRAAB8YPz3JwAArkh7%2Bjf%2BGQQAwAXGn10JAIBPGH92JgAAzkgbf/IIAIB3Esff038eAQAQzvhnEgAAJ9Ke/o1/LgEA8H/GnyQCAOAw/uQRAEC8tPGH4xAAQLjE8ff0z3EIAIAoxp83AgCIlfb0b/w5JQCASMafdAIAiGP8QQAAYdLGHz4jAIAYiePv6Z/PCAAggvGHnwkAgA0Zf64RAMD20p7%2BjT%2B3EADA1ow/nCcAgG2ljT/cQwAAW0ocf0//3EMAANsx/nCdAABYnPHnEQIA2Era07/x51ECANiG8YfbCQBgC8Yf7iMAgOWljT%2B0IACApSWOv6d/WhAAAAsx/rQiAIBlpT39G39aEgDAkow/PEcAAMsx/vA8AQAsJW38oRcBACwjcfw9/dOLAAAoyvjTkwAAlpD29G/86U0AAOUZf2hPAAClGX/oQwAAZaWNP4wkAICSEsff0z8jCQCgHOMP/QkAgMmMPzMIAKCUtKd/488sAgAow/jDOAIAKMH4w1gCAJgubfyhAgEATJU4/p7%2BqUAAAAxk/Kni19kHQE23PJW5kfGstKd//8xQycvXL9%2B%2Bzz4I5mtxI3Zz4x7GH%2BYSAOF63ITd6LjG%2BMN8fgII1fMG/Pb/202Pc9LGH6ryR4CBRt2A3eh5L/E7IYSpSgCEGX0DTrzhwxvjT2X%2BBiBEhSF2M8xW4Ts4ku871XkDEKDKjbfKcTBe2rU3/qxAAABdGX%2BoSQBsrtrNt9rx0JfrDXUJgI1VvflWPS7aSrzOnv5ZiQDYVPWbb/Xj4zmJ19f4sxoBwDSJI8GejD8rEgAbWmlYVzpWbpN2TY0/qxIATJc2GDtLu5bGn5UJgM2segNe9bj5wTWEtQgAyjAg60q8dp7%2BWZ0AoJTEIVld4jUz/uxAAFBO4qCwDuPPLgTARnYazp0%2By87SrpPxZycCgLLSxmU1adfH%2BLMbAUBpaSOzirTrYvzZkQCgvLSxqc71gD0IAJZgdGpIvA6e/tmVAGAZiePDXMafnQkAliIC5kk798af3QkAlpM2RBWknXPjTwIBwJLSBmmmtHNt/EkhADaSduNKG6YZnGPYlwBgaQaqn8RzmxbRZBMALC9xqGjP%2BJNGALAFEdBW2vk0/iQSAJtJvpGljVYvaecx%2BZ8ZsgkAtpI2Xq2lnT/jTzIBsKH0m1raiLXivEEWAcCWjNl9Es9XeiiDANiUm1vmqD0i8Tz55wMEwNbc5DLHjcv8cwGvBMDm3OxEwCVp58Y/D/CDACBC2tDdIu2cGH/4mQAI4Mb3Km3wLkk7F/4ZgI8EQIjf//jTTfDIG75znAPgOARAHBGQPYCJn913Hs4TAIHcEDOHMJHvOnxOAIRyY8yLgLTP6zsOlwmAYG6QOaOY8jnf%2BG7DdQIgnBvl/uO4%2B%2Bd7z3cabiMAcMM89h3JXT8X8DwBwHEcIuA49hvL3T7PLXyP4XYCgH%2B5eWaO5i58f%2BE%2BAoCfuInuEQE7fIZ7%2BN7C/QQAH7iZrj2gKx/7I3xf4TECgLPcVNcc0hWP%2BRm%2Bp/A4AcCn3FzXGtSVjhWYTwBwkQhYY1hXOMbWfDfhOQKAq9xoaw9s5WPrxXcSnicAuIkbbubQVuS7CG0IAG7mxlsvAqodT2%2B%2Bg9COAOAubsB1RrfKcYziuwdtCQDu5kY8f3xn/%2B8D6xMAPEQEzBvhxPH3fYP2BAAPc1MeP8bGH2hFAPAUN%2BfMUR7F9wv6EQA8zU16TASkhYbvFfQlAGjCzbrvQBt/oDUBQDNu2n2G2vgDPQgAmnLzbjvYaeMPjCMAaE4EtBnuxPH33YFxBABduJFnDvgzfGdgLAFAN27oj0dAWjz4rsB4AoCu3NjvH3PjD4wgAOjODf72UTf%2BwCgCgCHc6K%2BPe9r4A3MJAIYRAZ%2BPfOL4%2Bz7AXAKAodz0M8f%2BPd8DmE8AMJyb/88RkBYErj/U8PL1y7fvsw%2BCTGnDh/GHSrwBYBpjkMX1hloEAFMZBYA5BADTiYD9ucZQjwCgBAOxL9cWahIAlGEo9uOaQl0CgFIMxj5cS6hNAFCO4Vifawj1CQBKMiDrcu1gDQKAsgwJQD8CgNJEwFpcL1iHAKA8o7IG1wnWIgBYgnGpzfWB9QgAlmFkanJdYE0CgKUYm1pcD1iXAGA5RgfgeQKAJYmA%2BVwDWJsAYFkGaB7nHtYnAFiaIRrPOYc9CACWZ5DGca5hHwKALRim/pxj2IsAYBsGCuB2AoCtiIA%2BnFfYjwBgO8aqLecT9iQA2JLRasN5hH0JALZlvJ7j/MHeBABbM2KPcd5gfwKA7RkzgI8EABFEwO2cK8ggAIhh2K5zjiCHACCKgfuccwNZBABxDN1HzgnkEQBEMng/OBeQSQAQy/A5B5BMABDNAAKpBADxUiMg9XMDrwQAHHljmPZ5gY8EAPxfyiimfE7gMgEAJ3Yfx90/H3A7AQDv7DqSu34u4DECAM4wlsDuBAB8YqcI2OmzAG0IALhgh%2BHc4TMA7QkAuGLlAV352IG%2BBADcYMUhXfGYgXEEANxopUFd6ViBOQQA3MGwArsQAHCn6hFQ/fiAGgQAPKDqyFY9LqAeAQAPqja21Y4HqE0AAEAgAQBPqPLUXeU4gHW8fP3y7fvsg4Ad/Pc/vw3/3zT8wKO8AYBGRo%2Bx8QeeIQCgoVGjbPyBZ/kJADrp8ZOA4QdaEQDQWYsQMPxAawIABrslCAw%2B0JsAAIBA/ggQAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAINAvf//z18vsgwAAxvn7n79evAEAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAI9MtxvP77gLMPBADo723zvQEAgEACAAACCQAACCQAACDQvwHgDwEBYG%2BnW%2B8NAAAEEgAAEEgAAECgnwLA3wEAwJ7eb7w3AAAQSAAAQCABAACBPgSAvwMAgL2c23ZvAAAgkAAAgEBnA8DPAACwh8823RsAAAgkAAAg0KcB4GcAAFjbpS33BgAAAgkAAAh0MQD8DAAAa7q24d4AAECgqwHgLQAArOWW7fYGAAACCQAACHRTAPgZAADWcOtmewMAAIFuDgBvAQCgtnu22hsAAAh0VwB4CwAANd270d4AAECguwPAWwAAqOWRbfYGAAACPRQA3gIAQA2PbrI3AAAQ6OEA8BYAAOZ6ZoufegMgAgBgjmc32E8AABDo6QDwFgAAxmqxvd4AAECgJgHgLQAAjNFqc5u9ARABANBXy631EwAABGoaAN4CAEAfrTe2%2BRsAEQAAbfXY1i4/AYgAAGij16b6GwAACNQtALwFAIDn9NzSrm8ARAAAPKb3hnb/CUAEAMB9RmynvwEAgEBDAsBbAAC4zajNHPYGQAQAwGUjt3LoTwAiAADOG72Rw/8GQAQAwM9mbOOUPwIUAQDwatYmTvu3AEQAAOlmbuHUfw1QBACQavYGTv/vAMw%2BAQAwWoXtmx4Ax1HjRADACFU2r0QAHEedEwIAvVTaujIBcBy1TgwAtFRt40oFwHHUO0EA8KyK21YuAI6j5okCgEdU3bSSAXAcdU8YANyq8paVDYDjqH3iAOCS6htWOgCOo/4JBID3Vtiu8gd46uuXb99nHwMAfGaF4X9T/g3AqZVOLABZVtuopQLgONY7wQDsb8VtWu6AT/lJAICZVhz%2BN8u9ATi18okHYG2rb9DSAXAc618AANazw/Ys/wFO%2BUkAgJ52GP43y78BOLXThQGglt02ZqsPc8rbAABa2G3432z5oU4JAQAesevwv9nqJ4Bzdr%2BAALSXsB3bf8BT3gYAcEnC8L%2BJ%2BaCnhAAAp5KG/03cBz4lBACyJQ7/m9gPfkoIAGRJHv438SfglBAA2Jvh/8GJ%2BIQYANiD0T/PSblCCACsyfBf5uTcQQwA1Gb0b%2BdEPUgMANRg9B/jpDUgBgDGMvrPcwI7EAQAbRn89pzQAQQBwH0Mfn9O8CSiAOCVsZ/DSS9KIAC7MPA1/Q8gqUmZS3KVSgAAAABJRU5ErkJggg%3D%3D%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image/png%22%2C%22purpose%22%3A%22any%22%7D%2C%7B%22src%22%3A%22data%3Aimage/png%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAFkklEQVR4nO3dy20cVxRF0dOEAxCgkbJwFI7G4TgaR%2BEsOBLADOSB2XSz2VVdn/e59569hrYhFaCz61WXSPOiYL5/%2B/Fr9jWgn59vr5fZ13Br6sUwdkhzoxj%2BGzN6rBkdw7DfjOFjj1EhdP9NGD7O6B1Ct1%2Bc4aOlXiE0/0UZPnpqHcJLy1%2BM8aO31htrUhPDxwwtToPTJwDjxywttncqAMaP2c5u8HAAjB9RnNnioQAYP6I5usndATB%2BRHVkm7sCYPyIbu9GNwfA%2BJHFnq1uCoDxI5utm30aAONHVlu22/RLIYBsVgPg7o/snm14MQDGjyrWtswjEKw9DIC7P6pZ2jQnAKx9CYC7P6p6tG1OAFj7FAB3f1R3v3FOAFj7CIC7P1zcbp0TANYIANZeJB5/4Oe6eU4AWCMAWCMAWCMAWLvwARjOOAFgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBg7bfZF4C8/v7r94f//I8//xl6HWfwDTHYbWn49zKEwCMQdtk6/r3/7SwEgM2ODDp6BASATc4MOXIEBABrBICnWtzBo54CBIBVUYfbCgHAGgFgUfW7v0QAWOAwfokA8IDL%2BCUCwJ1e44/6ZREEgA9Od/4rAkB3Ue/%2BEgHgndujzxUBwHb8Et8QY6/H%2BDMM/4oTwJjjh957BGDK%2BbHnFgGgmWzjlwjAkvtz/y0CMMP4PyMAI4z/KwIwwRufxwjAAG98lhEADqkwfokAyuO5fx0BFMb4nyOAohj/NgRQEG98tiOAYnjjsw8B4Kmq45cIoBSe%2B/cjgCIY/zEEUADjP44AkuONzzkEkBhvfM4jAHziNH6JANLiub8NAkiI8bdT4v8LVOEHNm/F%2BNtKHcCzMVz/fZU/YN74tJf2EajaD2x%2Bhjc%2BfaQMoOIPbJ7BffxSwgCq/sDmNTz395MugLOyRcD4%2B0oVQKsxZImA8feXKoCWokcQ/fqqsA1Aijsy3viMYx2AFDeC1hj/Y/YBSLEi4Ll/LAJ4FyECxj9eqgB6/2HOjIDxz5EqgBFmRBDh9HGVLoARd7WRg%2BSNz1zpApDqRdAa498uZQBSjQh47p8vbQBS7ggYfwypA5ByRsD440gfgJQrgsyfLSoqEYCUIwLe%2BMRTJgApRwStMf5zSgUgxY2A5/6YygUgxYuA8cdVMgApTgSMP7ayAUjzI4j2eQFflQ5AmhcBb3xyKB%2BANP8kaIXxt2cRgDQ2Ap7787h8//bj1%2ByLGCnjcznj78fmBLjKNqZs15uNXQASo8L/LAOQckSQ4Rqzsw1Aij2wyNdWiXUAUsyhRbymquwDkGINLtK1OCCAdxGGF%2BEa3BDADQbohwDuzIqA%2BOYggAdGj5Hxz0MAC0aNkvHPRQAreo%2BT8c9HAE/0Ginjj4EANmCsdRHARi0jIKg4CGCHFsNl/LEQwE5nBsz44yGAA44MmfHHRAAH7Rk044/L7nuCe1j6PmOGHx8BwBqPQLBGALBGALBGALBGALBGALBGALBGALBGALBGALBGALBGALD28vPt9TL7IoAZfr69XjgBYI0AYI0AYI0AYO1F%2Bu/DwOwLAUa6bp4TANYIANY%2BAuAxCC5ut84JAGufAuAUQHX3G%2BcEgLUvAXAKoKpH2%2BYEgLWHAXAKoJqlTXMCwNpiAJwCqGJty6snABEgu2cb5hEI1p4GwCmArLZsd9MJQATIZutmNz8CEQGy2LPVXZ8BiADR7d3o7g/BRICojmzz0FsgIkA0Rzd5%2BDUoESCKM1s89fcARIDZzm7w9F%2BEEQFmabG9puPlh25jhJY33aZfCsFpgN5ab6zbYDkN0FKvm2v3OzYh4IzeTxXDHlkIAXuMepwe/sxOCFgz%2BnPk1A%2BtxABp7suTcG9tiKK2aG8K/wXU8wHS4QKB8gAAAABJRU5ErkJggg%3D%3D%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image/png%22%2C%22purpose%22%3A%22maskable%22%7D%5D%7D">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAFGUlEQVR4nO3dzW0jVxBF4SthAjDglbNwFBONw3E0jsJZaCVAGdgLmwJFNcnX3e+n6tb5loOB1BgeluqR4vSLAvj1l9/+WX0NOO/94+1l9TUsuQACrmFF4NO+IRHXNivuod+EiLFlZNxDvjAho8WIsF97f0FiRqsRrXR7hhAyzug1rbtMaGLGWb0aOvWsIGSMcGZaH57QxIxRzrR1KGhixmhHG9sdNDFjliOt7QqamDHb3uaagyZmrLKnvaagiRmrtTb4NGhiRhQtLXZ/6xtY6WHQTGdE86zJu0ETM6J61CYrB6xsBs10RnT3Gv0WNDEji61WWTlg5UvQTGdkc9ssExpWCBpWPoNm3UBW1+0yoWGFoGHlVWLdQH6XhpnQsELQsELQsPLC/gwnTGhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYIWhY+bH6AhDTX3/+/u3Pfv7x9/Tr2Itf8McXWyHfihw2Kwc+tcS85++tQNCQtD/SqFETNA7HGTFqgoYVgi7u7JSNNqUJurBoMfZA0LBC0EU5TmeJoEtyjVki6HJ6xxztXUOCLsR5Ml8QdBEjYo42nSWCxkERY5YIugT3vfkavw9trmfMkUO+YEIbq3AIvEXQpiqtGdcI2lDVmCWCxhOZYpYI2k61Q+AtgjZSPWaJoG1UfEVjC0EbqHwIvEXQyRHzVwSNT9ljlgg6NQ6B3xF0UsS8jaAT4hWN+wg6GQ6BjxF0IsT8HEEX5RizRNBpcAhsQ9AJEHM7gg6OVzT2IejAOATuR9BBEfMxaT/1nfUuTStU+ndJdxes7HdpasEh8LhUK4fDXZqeIeZz0gTtcpemRzJeczQpgna6S9M9HAL7SBH0GRmiJuZ+wgfd48GOHDUx9xU+6F4iR91L9ZilQkFL8aLmFY3+SgUtxYmamMcoF7S0PurV399Z+KBHTZ9VUXEIHCt80CPNjpqYx0sR9MgHLuuPf2LeliJoKX/UHALnSBO0lDdqYp4nVdBSvqizrjRZpQtayhM1h8D5UgYtxY+amNdIG7Q0Puoo6wIxt0sdtDT+wT4SNYfAddIHLcWKmpjXsghaihF1lBWlMpugpbVRcwiMwSpoaU3UxByHXdBSjPXjKGI+xzJoaV7UHAJjSfc/J+2V5aBGzH3YTugLQqnFfkJfizqtedL1Yz+hr0UMJ+I1ZVYqaClWQJGuxUW5oKUYIUW4Bkclg5bWBkXM45QNWiIsR6WDluZHzZNorPJBS/MiI+bxCPp/o2Mj5jkI+sqo6Ih5HoK+0Ts+Yp6LoDcQYV4EfQdR50TQD5yNmifFfAQNKwT9xNEpy3Reg6Ab7I2TmNch6EatkRLzWqU+sdLL1idfCDkGgoYVVg5YIWhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYIWhYeX3/eHtZfRFAD+8fby9MaFghaFghaFh5lf7bPVZfCHDGpWEmNKwQNKx8Bs3agayu22VCwwpBw8qXoFk7kM1ts0xoWPkWNFMaWWy1ujmhiRrR3WuUlQNW7gbNlEZUj9p8OKGJGtE8a5KVA1aeBs2URhQtLTZNaKLGaq0NNq8cRI1V9rS3a4cmasy2t7ndh0KixixHWjv0KgdRY7SjjR1+2Y6oMcqZtrpEyY2H0EOPIdnljRWmNc7q1VD3EJnW2KP3MOz+1jfTGq1GtDI0PqY1towcetOmKXHXNusn95L1gLhrWLF+hth3CdxDhPPTv9/A4Jlp/339AAAAAElFTkSuQmCC">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAFkklEQVR4nO3dy20cVxRF0dOEAxCgkbJwFI7G4TgaR+EsOBLADOSB2XSz2VVdn/e59569hrYhFaCz61WXSPOiYL5/+/Fr9jWgn59vr5fZ13Br6sUwdkhzoxj+GzN6rBkdw7DfjOFjj1EhdP9NGD7O6B1Ct1+c4aOlXiE0/0UZPnpqHcJLy1+M8aO31htrUhPDxwwtToPTJwDjxywttncqAMaP2c5u8HAAjB9RnNnioQAYP6I5usndATB+RHVkm7sCYPyIbu9GNwfA+JHFnq1uCoDxI5utm30aAONHVlu22/RLIYBsVgPg7o/snm14MQDGjyrWtswjEKw9DIC7P6pZ2jQnAKx9CYC7P6p6tG1OAFj7FAB3f1R3v3FOAFj7CIC7P1zcbp0TANYIANZeJB5/4Oe6eU4AWCMAWCMAWCMAWLvwARjOOAFgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBgjQBg7bfZF4C8/v7r94f//I8//xl6HWfwDTHYbWn49zKEwCMQdtk6/r3/7SwEgM2ODDp6BASATc4MOXIEBABrBICnWtzBo54CBIBVUYfbCgHAGgFgUfW7v0QAWOAwfokA8IDL+CUCwJ1e44/6ZREEgA9Od/4rAkB3Ue/+EgHgndujzxUBwHb8Et8QY6/H+DMM/4oTwJjjh957BGDK+bHnFgGgmWzjlwjAkvtz/y0CMMP4PyMAI4z/KwIwwRufxwjAAG98lhEADqkwfokAyuO5fx0BFMb4nyOAohj/NgRQEG98tiOAYnjjsw8B4Kmq45cIoBSe+/cjgCIY/zEEUADjP44AkuONzzkEkBhvfM4jAHziNH6JANLiub8NAkiI8bdT4v8LVOEHNm/F+NtKHcCzMVz/fZU/YN74tJf2EajaD2x+hjc+faQMoOIPbJ7BffxSwgCq/sDmNTz395MugLOyRcD4+0oVQKsxZImA8feXKoCWokcQ/fqqsA1Aijsy3viMYx2AFDeC1hj/Y/YBSLEi4Ll/LAJ4FyECxj9eqgB6/2HOjIDxz5EqgBFmRBDh9HGVLoARd7WRg+SNz1zpApDqRdAa498uZQBSjQh47p8vbQBS7ggYfwypA5ByRsD440gfgJQrgsyfLSoqEYCUIwLe+MRTJgApRwStMf5zSgUgxY2A5/6YygUgxYuA8cdVMgApTgSMP7ayAUjzI4j2eQFflQ5AmhcBb3xyKB+ANP8kaIXxt2cRgDQ2Ap7787h8//bj1+yLGCnjcznj78fmBLjKNqZs15uNXQASo8L/LAOQckSQ4Rqzsw1Aij2wyNdWiXUAUsyhRbymquwDkGINLtK1OCCAdxGGF+Ea3BDADQbohwDuzIqA+OYggAdGj5Hxz0MAC0aNkvHPRQAreo+T8c9HAE/0Ginjj4EANmCsdRHARi0jIKg4CGCHFsNl/LEQwE5nBsz44yGAA44MmfHHRAAH7Rk044/L7nuCe1j6PmOGHx8BwBqPQLBGALBGALBGALBGALBGALBGALBGALBGALBGALBGALBGALD28vPt9TL7IoAZfr69XjgBYI0AYI0AYI0AYO1F+u/DwOwLAUa6bp4TANYIANY+AuAxCC5ut84JAGufAuAUQHX3G+cEgLUvAXAKoKpH2+YEgLWHAXAKoJqlTXMCwNpiAJwCqGJty6snABEgu2cb5hEI1p4GwCmArLZsd9MJQATIZutmNz8CEQGy2LPVXZ8BiADR7d3o7g/BRICojmzz0FsgIkA0Rzd5+DUoESCKM1s89fcARIDZzm7w9F+EEQFmabG9puPlh25jhJY33aZfCsFpgN5ab6zbYDkN0FKvm2v3OzYh4IzeTxXDHlkIAXuMepwe/sxOCFgz+nPk1A+txABp7suTcG9tiKK2aG8K/wXU8wHS4QKB8gAAAABJRU5ErkJggg==">
+<meta name="theme-color" content="#131019">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="OPEN CHECK">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="description" content="X8 OPENチェック — 営業開始前のチェックリストをスタッフ全員でリアルタイム共有">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#131019;
+  --bg-elev:#1b1725;
+  --surface:#221d30;
+  --surface2:#2b2440;
+  --border:#3a3350;
+  --gold:#cda449;
+  --gold-dim:#8a7233;
+  --gold-soft:rgba(205,164,73,0.15);
+  --indigo:#7d8cff;
+  --danger:#e5535a;
+  --danger-soft:rgba(229,83,90,0.15);
+  --success:#38caa0;
+  --success-soft:rgba(56,202,160,0.15);
+  --text:#f3f0ea;
+  --text-dim:#a79fc0;
+  --text-faint:#6d6585;
+  --radius:14px;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Noto Sans JP', sans-serif;
+  overscroll-behavior:none;
+  padding-bottom:env(safe-area-inset-bottom);
+  -webkit-font-smoothing:antialiased;
+}
+button, input, select, textarea{ font-family:inherit; }
+#app{display:flex; flex-direction:column; height:100dvh; max-width:560px; margin:0 auto; position:relative;}
+
+/* ===== header ===== */
+header{
+  flex:0 0 auto; display:flex; align-items:center; justify-content:space-between;
+  padding:calc(12px + env(safe-area-inset-top)) 14px 10px; border-bottom:1px solid var(--border);
+  background:linear-gradient(180deg, var(--bg-elev), var(--bg));
+  gap:8px;
+}
+.brand{display:flex; align-items:center; gap:8px; min-width:0;}
+.brand .mark{
+  font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:1px;
+  font-size:18px; color:var(--gold); border:1.5px solid var(--gold); border-radius:6px;
+  padding:2px 7px 2px 8px; text-align:center; line-height:1.3; flex:0 0 auto;
+}
+.brand .titles{min-width:0;}
+.brand .sub{font-size:11px; color:var(--text-faint); letter-spacing:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.brand .page-title{font-size:13.5px; color:var(--text-dim); font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.header-actions{display:flex; align-items:center; gap:10px; flex:0 0 auto;}
+.staff-chip{
+  display:flex; align-items:center; gap:5px; background:var(--surface2); border:1px solid var(--border);
+  border-radius:20px; padding:5px 10px 5px 8px; font-size:12px; color:var(--text); font-weight:700;
+}
+.staff-chip .dot{width:6px; height:6px; border-radius:50%; background:var(--success); box-shadow:0 0 6px var(--success);}
+.sync-dot{width:7px; height:7px; border-radius:50%; background:var(--success); display:inline-block; box-shadow:0 0 6px var(--success);}
+.sync-dot.offline{background:var(--danger); box-shadow:0 0 6px var(--danger);}
+.sync-dot.pending{background:var(--gold); box-shadow:0 0 6px var(--gold); animation:pulseDot 1s ease-in-out infinite;}
+@keyframes pulseDot{0%,100%{opacity:1;}50%{opacity:0.35;}}
+.icon-btn{
+  width:34px; height:34px; border-radius:50%; background:var(--surface2); border:1px solid var(--border);
+  display:flex; align-items:center; justify-content:center; color:var(--gold); flex:0 0 auto;
+}
+.icon-btn:active{transform:scale(0.92);}
+.icon-btn svg{width:16px; height:16px;}
+
+/* ===== main / tabs ===== */
+main{flex:1 1 auto; overflow-y:auto; padding:14px 14px calc(80px + env(safe-area-inset-bottom)); -webkit-overflow-scrolling:touch;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+nav#bottomNav{
+  position:absolute; left:0; right:0; bottom:2px;
+  display:flex; background:var(--bg-elev); border-top:1px solid var(--border);
+  padding:5px 4px calc(4px + env(safe-area-inset-bottom));
+  border-radius:16px 16px 0 0;
+  z-index:20;
+}
+nav#bottomNav button{
+  flex:1; background:none; border:none; color:var(--text-faint); font-family:inherit;
+  font-size:10.5px; padding:6px 0 4px; display:flex; flex-direction:column; align-items:center; gap:3px;
+  border-radius:10px; font-weight:500;
+}
+nav#bottomNav button .icon{font-size:17px;}
+nav#bottomNav button.active{color:var(--gold);}
+nav#bottomNav button.active .icon{filter:drop-shadow(0 0 6px rgba(205,164,73,0.5));}
+
+/* ===== generic ===== */
+.section-title{font-size:12.5px; color:var(--gold); letter-spacing:1px; font-weight:700; margin:20px 0 8px;}
+.section-title:first-child{margin-top:0;}
+.section-sub{font-size:11.5px; color:var(--text-faint); margin:-4px 0 12px;}
+.card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:14px; margin-bottom:12px;}
+.row{display:flex; align-items:center; gap:8px;}
+.row + .row{margin-top:8px;}
+.btn{
+  background:var(--surface2); color:var(--text); border:1px solid var(--border); border-radius:11px;
+  padding:11px 14px; font-size:13.5px; font-family:inherit; font-weight:700;
+}
+.btn:active{transform:scale(0.97);}
+.btn.gold{background:var(--gold); color:#221a05; border-color:var(--gold);}
+.btn.ghost{background:none; border:1px solid var(--border); color:var(--text-dim); font-weight:500;}
+.btn.danger{background:var(--danger); border-color:var(--danger); color:#fff;}
+.btn.danger.outline{background:none; color:var(--danger); border-color:var(--danger);}
+.btn.small{padding:7px 10px; font-size:12px;}
+.btn.block{width:100%;}
+.btn.icon-only{padding:9px; width:38px; display:flex; align-items:center; justify-content:center;}
+.btn:disabled{opacity:0.4;}
+.pill{display:inline-flex; align-items:center; gap:4px; font-size:11px; padding:4px 10px; border-radius:20px; border:1px solid var(--border); color:var(--text-dim); white-space:nowrap;}
+.pill.gold{background:var(--gold-soft); border-color:var(--gold); color:var(--gold); font-weight:700;}
+input[type=text], input[type=number], select, textarea{
+  background:var(--bg-elev); border:1px solid var(--border); color:var(--text); border-radius:9px;
+  padding:9px 11px; font-size:14px; font-family:inherit; width:100%;
+}
+input:focus, select:focus, textarea:focus{outline:2px solid var(--gold); outline-offset:1px;}
+label.tiny{font-size:10.5px; color:var(--text-faint); display:block; margin-bottom:4px; letter-spacing:.4px;}
+.toggle-row{display:flex; align-items:center; justify-content:space-between; gap:10px;}
+.toggle-row .lbl{font-size:13px; color:var(--text-dim); font-weight:500;}
+.switch{position:relative; width:34px; height:20px; background:var(--surface2); border:1px solid var(--border); border-radius:20px; flex:0 0 auto;}
+.switch::after{content:''; position:absolute; width:14px; height:14px; border-radius:50%; background:var(--text-faint); top:2px; left:2px; transition:.15s;}
+.switch.on{background:rgba(205,164,73,0.22); border-color:var(--gold);}
+.switch.on::after{left:17px; background:var(--gold);}
+.empty-hint{color:var(--text-faint); font-size:12.5px; text-align:center; padding:26px 10px; border:1px dashed var(--border); border-radius:var(--radius);}
+::-webkit-scrollbar{width:0; height:0;}
+
+/* ===== staff gate ===== */
+#staffGate{
+  position:fixed; inset:0; z-index:100;
+  min-height:100dvh; display:flex; align-items:center; justify-content:center;
+  padding:calc(24px + env(safe-area-inset-top)) 24px calc(24px + env(safe-area-inset-bottom));
+  background:radial-gradient(circle at 50% 20%, #221d30, var(--bg) 70%);
+}
+.gate-box{width:100%; max-width:360px; text-align:center;}
+.gate-brand{font-family:'Oswald',sans-serif; color:var(--gold); font-size:24px; letter-spacing:3px; font-weight:700; margin-bottom:4px;}
+.gate-sub{color:var(--text-faint); font-size:11px; letter-spacing:2px; margin-bottom:24px;}
+.gate-title{color:var(--text-dim); font-size:14px; margin-bottom:18px;}
+.staff-btn-list{display:flex; flex-direction:column; gap:10px;}
+.staff-btn{
+  background:var(--surface); border:1.5px solid var(--border); color:var(--text);
+  border-radius:13px; padding:16px; font-size:16px; font-weight:700; font-family:inherit;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+}
+.staff-btn:active{transform:scale(0.97); background:var(--surface2); border-color:var(--gold);}
+
+/* ===== progress header ===== */
+.progress-card{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:16px; margin-bottom:14px;}
+.progress-top{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:2px;}
+.progress-title{font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:1.5px; font-size:15px; color:var(--gold);}
+.progress-date{font-size:12px; color:var(--text-faint);}
+.progress-fig{display:flex; align-items:baseline; gap:10px; margin:8px 0 10px;}
+.progress-fig .frac{font-family:'Oswald',sans-serif; font-weight:700; font-size:34px; color:var(--text); line-height:1;}
+.progress-fig .frac span{color:var(--text-faint); font-size:20px;}
+.progress-fig .pct{font-family:'Oswald',sans-serif; font-weight:600; font-size:17px; color:var(--gold);}
+.progress-track{height:9px; border-radius:6px; background:var(--surface2); overflow:hidden;}
+.progress-fill{height:100%; background:linear-gradient(90deg, var(--gold-dim), var(--gold)); border-radius:6px; transition:width .35s ease;}
+.progress-done-banner{
+  margin-top:12px; text-align:center; background:var(--success-soft); border:1px solid var(--success);
+  color:var(--success); font-weight:700; font-size:13.5px; border-radius:10px; padding:10px;
+}
+
+/* ===== staff tally ===== */
+.tally-strip{display:flex; gap:7px; overflow-x:auto; padding-bottom:2px; margin-bottom:16px;}
+.tally-strip::-webkit-scrollbar{display:none;}
+.tally-chip{
+  flex:0 0 auto; background:var(--surface); border:1px solid var(--border); border-radius:11px;
+  padding:8px 12px; text-align:center; min-width:64px;
+}
+.tally-chip .n{font-family:'Oswald',sans-serif; font-weight:700; font-size:18px; color:var(--gold);}
+.tally-chip .who{font-size:10.5px; color:var(--text-faint); margin-top:2px; white-space:nowrap;}
+
+/* ===== filter bar ===== */
+.filter-bar{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;}
+.filter-bar .lbl{font-size:12.5px; color:var(--text-dim); font-weight:700;}
+
+/* ===== category / item list ===== */
+.category-block{margin-bottom:10px; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:var(--surface);}
+.category-header{display:flex; align-items:center; justify-content:space-between; padding:13px 14px; gap:10px;}
+.category-header .name{font-size:14px; font-weight:700; color:var(--text); display:flex; align-items:center; gap:8px; min-width:0;}
+.category-header .chev{color:var(--text-faint); font-size:11px; transition:transform .15s; flex:0 0 auto;}
+.category-header.collapsed .chev{transform:rotate(-90deg);}
+.category-count{font-family:'Oswald',sans-serif; font-size:13px; font-weight:600; color:var(--text-dim); flex:0 0 auto;}
+.category-count.done{color:var(--success);}
+.category-items{border-top:1px solid var(--border);}
+.category-items.collapsed{display:none;}
+.item-row{
+  display:flex; align-items:flex-start; gap:11px; padding:13px 14px;
+  border-bottom:1px solid var(--border);
+}
+.item-row:last-child{border-bottom:none;}
+.item-row:active{background:var(--surface2);}
+.item-check{
+  width:23px; height:23px; border-radius:7px; border:2px solid var(--border); flex:0 0 auto; margin-top:1px;
+  display:flex; align-items:center; justify-content:center; color:transparent; font-size:14px; font-weight:900;
+}
+.item-row.checked .item-check{background:var(--gold); border-color:var(--gold); color:#221a05;}
+.item-body{min-width:0; flex:1;}
+.item-name{font-size:14px; color:var(--text); line-height:1.4;}
+.item-row.checked .item-name{color:var(--text-dim);}
+.item-meta{font-size:11px; color:var(--text-faint); margin-top:3px;}
+.item-meta .who{color:var(--gold); font-weight:700;}
+
+/* ===== history ===== */
+.hist-day-row{
+  display:flex; align-items:center; justify-content:space-between; padding:14px; background:var(--surface);
+  border:1px solid var(--border); border-radius:var(--radius); margin-bottom:9px;
+}
+.hist-day-row .date{font-family:'Oswald',sans-serif; font-size:15px; font-weight:700; color:var(--text);}
+.hist-day-row .frac{font-size:13px; color:var(--text-dim);}
+.hist-day-row .frac.done{color:var(--success); font-weight:700;}
+.hist-event-row{display:grid; grid-template-columns:1fr auto; gap:6px; padding:10px 4px; border-bottom:1px solid var(--border); font-size:12.5px;}
+.hist-event-row:last-child{border-bottom:none;}
+.hist-event-row .action{color:var(--text-faint); font-size:11px; margin-top:2px;}
+.hist-event-row .time{color:var(--text-faint); font-size:11.5px; text-align:right; white-space:nowrap;}
+.back-link{display:inline-flex; align-items:center; gap:5px; color:var(--gold); font-size:13px; font-weight:700; margin-bottom:14px;}
+
+/* ===== admin ===== */
+.admin-row{display:flex; align-items:center; gap:8px; padding:10px 4px; border-bottom:1px solid var(--border);}
+.admin-row:last-child{border-bottom:none;}
+.admin-row .fields{flex:1; min-width:0; display:flex; flex-direction:column; gap:4px;}
+.admin-row .cat-tag{font-size:10.5px; color:var(--text-faint);}
+.admin-move{display:flex; flex-direction:column; gap:3px;}
+.admin-move button{width:26px; height:22px; padding:0; font-size:11px; line-height:1;}
+.add-form{display:flex; flex-direction:column; gap:8px; margin-top:12px; padding-top:12px; border-top:1px dashed var(--border);}
+
+/* ===== modal ===== */
+.modal-overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,0.65); z-index:200; display:flex;
+  align-items:flex-end; justify-content:center; padding:0;
+}
+@media (min-height:560px){ .modal-overlay{ align-items:center; padding:20px; } }
+.modal-box{
+  background:var(--surface); border:1px solid var(--border); width:100%; max-width:400px;
+  border-radius:18px 18px 0 0; padding:22px 20px calc(20px + env(safe-area-inset-bottom));
+}
+@media (min-height:560px){ .modal-box{ border-radius:16px; } }
+.modal-title{font-size:15.5px; font-weight:700; color:var(--text); margin-bottom:6px;}
+.modal-body{font-size:13px; color:var(--text-dim); margin-bottom:18px; line-height:1.5;}
+.modal-actions{display:flex; gap:9px;}
+.modal-actions .btn{flex:1;}
+
+/* ===== toast ===== */
+.toast{position:fixed; left:50%; bottom:88px; transform:translateX(-50%); background:var(--surface2); border:1px solid var(--gold); color:var(--text); padding:10px 18px; border-radius:20px; font-size:12.5px; z-index:250; opacity:0; transition:opacity .25s; pointer-events:none; max-width:88%; text-align:center;}
+.toast.show{opacity:1;}
+
+/* ===== loading ===== */
+#appLoading{position:fixed; inset:0; background:var(--bg); z-index:300; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:14px;}
+#appLoading .mark{font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:2px; font-size:26px; color:var(--gold); border:2px solid var(--gold); border-radius:10px; padding:6px 14px;}
+#appLoading .msg{font-size:12px; color:var(--text-faint); letter-spacing:1px;}
+.offline-banner{background:var(--danger-soft); border-bottom:1px solid var(--danger); color:var(--danger); font-size:11.5px; padding:8px 14px; align-items:center; gap:6px; flex:0 0 auto; text-align:center; justify-content:center;}
+</style>
+</head>
+<body>
+
+<div id="appLoading"><div class="mark">X8</div><div class="msg">読み込み中…</div></div>
+
+<div id="staffGate" style="display:none;"></div>
+
+<div id="app" style="display:none;">
+  <header>
+    <div class="brand">
+      <span class="mark">X8</span>
+      <div class="titles">
+        <div class="page-title" id="pageTitle">OPEN CHECK</div>
+        <div class="sub"><span class="sync-dot" id="syncDot"></span> <span id="syncLabel">オンライン</span></div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="staff-chip" id="staffChipBtn"><span class="dot"></span><span id="staffChipName">-</span></button>
+      <button class="icon-btn" id="shareBtn" title="共有" aria-label="共有">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="10.6" x2="15.4" y2="6.4"></line><line x1="8.6" y1="13.4" x2="15.4" y2="17.6"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <div id="offlineBanner" class="offline-banner" style="display:none;">⚠ 共有オフ：この端末のみに保存中…</div>
+
+  <main>
+    <section class="tab-panel" id="tab-check"></section>
+    <section class="tab-panel" id="tab-history"></section>
+    <section class="tab-panel" id="tab-admin"></section>
+  </main>
+
+  <nav id="bottomNav">
+    <button data-tab="check"><span class="icon">✓</span>チェック</button>
+    <button data-tab="history"><span class="icon">🕘</span>履歴</button>
+    <button data-tab="admin"><span class="icon">⚙️</span>管理</button>
+  </nav>
+
+  <div id="modalRoot"></div>
+  <div class="toast" id="toast"></div>
+</div>
+
+<script type="module">
+'use strict';
+/* =========================================================================
+   X8 OPEN CHECK — 営業開始前チェックリスト（スタッフ共有）
+   データ層: Firebase Realtime Database（Claudeの共有機能に依存しない）
+   ホスティング: GitHub Pages（誰でもアクセス可、サインイン不要）
+   ========================================================================= */
+
+/* ---------- Firebase 初期化 ---------- */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getDatabase, ref, onValue, set, update } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDfHz5djZU4ZsJKY9DsfQOJt3D7pdSOHqU",
+  authDomain: "x8clean.firebaseapp.com",
+  databaseURL: "https://x8clean-default-rtdb.firebaseio.com",
+  projectId: "x8clean",
+  storageBucket: "x8clean.firebasestorage.app",
+  messagingSenderId: "716422687785",
+  appId: "1:716422687785:web:3d18478a3c301580ea4038"
+};
+const fbApp = initializeApp(firebaseConfig);
+const db = getDatabase(fbApp);
+const rootRef = ref(db);
+
+/* ---------- 固定データ ---------- */
+var STAFF = [
+  {id:'s1', name:'りょうた'},
+  {id:'s2', name:'そら'},
+  {id:'s3', name:'まや'},
+  {id:'s4', name:'りあ'},
+  {id:'s5', name:'しん'}
+];
+
+/* しんくんが実際に管理画面で編集・削除・追加した内容をそのまま初期データとして引き継ぐ
+   （Firebaseが空の場合にのみ、初回1回だけ書き込まれる） */
+var DEFAULT_CATEGORIES = [{"id": "cat1", "name": "店内清掃・環境", "order": 1, "deleted": false}, {"id": "cat2", "name": "キャッシャー・レジ", "order": 2, "deleted": false}, {"id": "cat3", "name": "ドリンク・ボトル", "order": 3, "deleted": false}, {"id": "cat4", "name": "音響・照明", "order": 4, "deleted": false}, {"id": "cat5", "name": "身だしなみ・接客準備", "order": 5, "deleted": false}, {"id": "cat6", "name": "トイレ・洗面", "order": 6, "deleted": false}, {"id": "cat7", "name": "防犯・管理", "order": 7, "deleted": false}];
+var DEFAULT_ITEMS = [{"id": "i01", "categoryId": "cat1", "name": "フロア清掃", "order": 1, "deleted": false}, {"id": "i02", "categoryId": "cat1", "name": "テーブル・ソファの拭き上げ", "order": 2, "deleted": false}, {"id": "i03", "categoryId": "cat1", "name": "ゴミ箱の交換", "order": 3, "deleted": false}, {"id": "i04", "categoryId": "cat1", "name": "空調・室温チェック", "order": 4, "deleted": false}, {"id": "i05", "categoryId": "cat1", "name": "BGM・音量チェック", "order": 5, "deleted": false}, {"id": "i06", "categoryId": "cat1", "name": "観葉植物・装花の状態確認", "order": 6, "deleted": true}, {"id": "i07", "categoryId": "cat2", "name": "レジ釣り銭の確認", "order": 1, "deleted": false}, {"id": "i08", "categoryId": "cat2", "name": "POSシステム起動確認", "order": 2, "deleted": false}, {"id": "i09", "categoryId": "cat2", "name": "伝票・ペン類の補充", "order": 3, "deleted": false}, {"id": "i10", "categoryId": "cat2", "name": "料金表・メニューの設置", "order": 4, "deleted": false}, {"id": "i11", "categoryId": "cat2", "name": "クレジット端末動作確認", "order": 5, "deleted": false}, {"id": "i12", "categoryId": "cat3", "name": "氷の補充", "order": 1, "deleted": false}, {"id": "i13", "categoryId": "cat3", "name": "グラス個数確認", "order": 2, "deleted": false}, {"id": "i14", "categoryId": "cat3", "name": "ボトルキープの在庫確認", "order": 3, "deleted": false}, {"id": "i15", "categoryId": "cat3", "name": "フルーツ・ガーニッシュの仕込み", "order": 4, "deleted": true}, {"id": "i16", "categoryId": "cat3", "name": "缶物在庫確認", "order": 5, "deleted": false}, {"id": "i17", "categoryId": "cat3", "name": "おしぼりの準備", "order": 6, "deleted": false}, {"id": "i18", "categoryId": "cat4", "name": "照明シーンの確認", "order": 1, "deleted": false}, {"id": "i19", "categoryId": "cat4", "name": "スピーカー・音響機材の動作確認", "order": 2, "deleted": false}, {"id": "i20", "categoryId": "cat4", "name": "マイク・カラオケ機材確認", "order": 3, "deleted": false}, {"id": "i21", "categoryId": "cat4", "name": "ミラーボール・エフェクト確認", "order": 4, "deleted": true}, {"id": "i22", "categoryId": "cat4", "name": "予備電球・電池の確認", "order": 5, "deleted": false}, {"id": "i23", "categoryId": "cat5", "name": "スタッフ全員の身だしなみチェック", "order": 1, "deleted": false}, {"id": "i24", "categoryId": "cat5", "name": "名札の着用確認", "order": 2, "deleted": true}, {"id": "i25", "categoryId": "cat5", "name": "おしぼり・お手拭きのセット", "order": 3, "deleted": false}, {"id": "i26", "categoryId": "cat5", "name": "テーブルセッティング確認", "order": 4, "deleted": false}, {"id": "i27", "categoryId": "cat5", "name": "新従業員との会話", "order": 5, "deleted": false}, {"id": "i28", "categoryId": "cat5", "name": "本日の予約・指名確認", "order": 6, "deleted": false}, {"id": "i29", "categoryId": "cat6", "name": "トイレットペーパー・備品補充", "order": 1, "deleted": false}, {"id": "i30", "categoryId": "cat6", "name": "手洗い場の清掃・石鹸補充", "order": 2, "deleted": false}, {"id": "i31", "categoryId": "cat6", "name": "芳香剤・消臭確認", "order": 3, "deleted": false}, {"id": "i32", "categoryId": "cat6", "name": "アメニティ(ハンドタオル等)確認", "order": 4, "deleted": false}, {"id": "i33", "categoryId": "cat6", "name": "洗面台の水漏れ確認", "order": 5, "deleted": false}, {"id": "i34", "categoryId": "cat7", "name": "非常口・避難経路の確認", "order": 1, "deleted": true}, {"id": "i35", "categoryId": "cat7", "name": "防犯カメラの動作確認", "order": 2, "deleted": false}, {"id": "i36", "categoryId": "cat7", "name": "金庫の施錠確認", "order": 3, "deleted": false}, {"id": "i37", "categoryId": "cat7", "name": "救急箱の中身確認", "order": 4, "deleted": false}, {"id": "i38", "categoryId": "cat7", "name": "消火器の位置確認", "order": 5, "deleted": true}, {"id": "i_mu3yzqrrup8e5", "categoryId": "cat3", "name": "割り物在庫確認", "order": 7, "deleted": false}];
+
+/* ---------- ユーティリティ ---------- */
+function escHtml(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function escAttr(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;'); }
+function genId(prefix){ return prefix + '_' + Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+function todayStr(){
+  var d = new Date();
+  var y = d.getFullYear(), m = String(d.getMonth()+1).padStart(2,'0'), day = String(d.getDate()).padStart(2,'0');
+  return y+'-'+m+'-'+day;
+}
+function fmtDateJp(dateStr){ return String(dateStr||'').split('-').join('/'); }
+function fmtHM(ts){
+  if(!ts) return '';
+  var d = new Date(ts);
+  return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+}
+function staffName(id){ var s = STAFF.filter(function(x){return x.id===id;})[0]; return s ? s.name : (id||''); }
+
+/* ---------- 状態 ---------- */
+var deviceId = null;
+var currentStaffId = null;
+var categories = DEFAULT_CATEGORIES.slice();
+var items = DEFAULT_ITEMS.slice();
+var dayDoc = null;
+var allDays = {};
+var currentSubscribedDate = null;
+var currentTab = 'check';
+var collapsedCats = {};
+var filterIncomplete = false;
+var historyView = 'list';
+var historyDetailDate = null;
+var connected = false;
+var MAX_HISTORY_DAYS = 30;
+
+/* ---------- localStorage 補助 ---------- */
+function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,v); return true; }catch(e){ return false; } }
+function lsGetJSON(k, fallback){ try{ var v = localStorage.getItem(k); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; } }
+function lsSetJSON(k, v){ return lsSet(k, JSON.stringify(v)); }
+
+/* ---------- オブジェクト⇔配列変換（Firebaseは配列よりID付きオブジェクト推奨） ---------- */
+function arrToObj(arr){ var o={}; arr.forEach(function(x){ o[x.id]=x; }); return o; }
+function objToArr(obj){ return Object.keys(obj||{}).map(function(k){ return obj[k]; }); }
+function logToArr(logObj){
+  var arr = Object.keys(logObj||{}).map(function(k){ return logObj[k]; });
+  arr.sort(function(a,b){ return (a.at||0)-(b.at||0); });
+  return arr;
+}
+
+/* ---------- 派生データ ---------- */
+function activeCategories(){
+  return categories.filter(function(c){ return !c.deleted; }).slice().sort(function(a,b){ return a.order-b.order; });
+}
+function activeItemsForCategory(catId){
+  return items.filter(function(it){ return !it.deleted && it.categoryId===catId; }).slice().sort(function(a,b){ return a.order-b.order; });
+}
+function activeItemsAll(){
+  return items.filter(function(it){ return !it.deleted; });
+}
+function itemState(itemId){
+  var d = (dayDoc && dayDoc.items) ? dayDoc.items[itemId] : null;
+  if(!d) return {checked:false, checkedBy:null, checkedAt:null, log:[]};
+  return {
+    checked: !!d.checked,
+    checkedBy: d.checkedBy || null,
+    checkedAt: d.checkedAt || null,
+    log: logToArr(d.log)
+  };
+}
+function computeProgress(){
+  var all = activeItemsAll();
+  var total = all.length, done = 0;
+  for(var i=0;i<all.length;i++){ if(itemState(all[i].id).checked) done++; }
+  return {done:done, total:total, pct: total ? Math.round(done/total*100) : 0};
+}
+function computeTally(){
+  var counts = {};
+  STAFF.forEach(function(s){ counts[s.id]=0; });
+  var all = activeItemsAll();
+  for(var i=0;i<all.length;i++){
+    var st = itemState(all[i].id);
+    if(st.checked && st.checkedBy && counts.hasOwnProperty(st.checkedBy)) counts[st.checkedBy]++;
+  }
+  return STAFF.map(function(s){ return {id:s.id, name:s.name, n:counts[s.id]||0}; });
+}
+
+/* ---------- チェック操作（UI起点・楽観的更新・Firebaseへ即時書き込み） ---------- */
+/* リアルタイムDBへの書き込みはページ再読み込みを伴わないため、
+   旧artifact版のようなデバウンス／キュー機構は不要。各タップは
+   それぞれ別パスへの独立した書き込みなので、同時操作でも競合しない。 */
+function setItemChecked(itemId, checked, staffId){
+  var ts = Date.now();
+  var date = todayStr();
+  checkDateRollover();
+  if(!dayDoc) dayDoc = {date:date, items:{}};
+  if(!dayDoc.items) dayDoc.items = {};
+  var existing = dayDoc.items[itemId] || {checked:false, checkedBy:null, checkedAt:null, log:{}};
+  var logKey = 'l_' + genId('x');
+  var newLog = Object.assign({}, existing.log||{});
+  newLog[logKey] = {a: checked?'c':'u', by: staffId, at: ts};
+  dayDoc.items[itemId] = {checked:checked, checkedBy: checked?staffId:null, checkedAt: checked?ts:null, log:newLog};
+  allDays[date] = dayDoc;
+  renderAll();
+
+  var updates = {};
+  updates['days/'+date+'/items/'+itemId+'/checked'] = checked;
+  updates['days/'+date+'/items/'+itemId+'/checkedBy'] = checked ? staffId : null;
+  updates['days/'+date+'/items/'+itemId+'/checkedAt'] = checked ? ts : null;
+  updates['days/'+date+'/items/'+itemId+'/log/'+logKey] = {a: checked?'c':'u', by: staffId, at: ts};
+  update(rootRef, updates).catch(function(err){
+    console.error('write failed', err);
+    toast('保存に失敗しました。通信環境を確認してください');
+  });
+}
+
+function requestUncheck(itemId){
+  var itDef = items.filter(function(x){return x.id===itemId;})[0];
+  showConfirmModal({
+    title: '確認',
+    body: (itDef?itDef.name:'この項目') + ' のチェックを取り消しますか？',
+    confirmLabel: '取り消す',
+    cancelLabel: 'キャンセル',
+    danger: true,
+    onConfirm: function(){ setItemChecked(itemId, false, currentStaffId); }
+  });
+}
+
+function handleItemTap(itemId){
+  if(!currentStaffId) return;
+  var st = itemState(itemId);
+  if(st.checked){ requestUncheck(itemId); }
+  else { setItemChecked(itemId, true, currentStaffId); }
+}
+
+function performResetToday(staffId){
+  var date = todayStr();
+  var ts = Date.now();
+  var day = allDays[date] || {date:date, items:{}};
+  var updates = {};
+  Object.keys(day.items||{}).forEach(function(id){
+    var it = day.items[id];
+    var logKey = 'l_' + genId('x');
+    updates['days/'+date+'/items/'+id+'/checked'] = false;
+    updates['days/'+date+'/items/'+id+'/checkedBy'] = null;
+    updates['days/'+date+'/items/'+id+'/checkedAt'] = null;
+    updates['days/'+date+'/items/'+id+'/log/'+logKey] = {a:'r', by:staffId, at:ts};
+    var newLog = Object.assign({}, it.log||{});
+    newLog[logKey] = {a:'r', by:staffId, at:ts};
+    day.items[id] = {checked:false, checkedBy:null, checkedAt:null, log:newLog};
+  });
+  allDays[date] = day;
+  dayDoc = day;
+  renderAll();
+  return update(rootRef, updates);
+}
+
+function checkDateRollover(){
+  var date = todayStr();
+  if(date !== currentSubscribedDate){
+    currentSubscribedDate = date;
+    dayDoc = allDays[date] || {date:date, items:{}};
+    allDays[date] = dayDoc;
+    renderAll();
+  }
+}
+
+/* ---------- スタッフゲート ---------- */
+function renderStaffGate(){
+  var el = document.getElementById('staffGate');
+  el.innerHTML = '<div class="gate-box">'
+    + '<div class="gate-brand">X8</div>'
+    + '<div class="gate-sub">OPEN CHECK</div>'
+    + '<div class="gate-title">あなたの名前を選んでください</div>'
+    + '<div class="staff-btn-list">'
+    + STAFF.map(function(s){ return '<button class="staff-btn" data-staff="'+escAttr(s.id)+'">'+escHtml(s.name)+'</button>'; }).join('')
+    + '</div></div>';
+}
+function showStaffGate(){
+  document.getElementById('staffGate').style.display='flex';
+  document.getElementById('app').style.display='none';
+}
+function showApp(){
+  document.getElementById('staffGate').style.display='none';
+  document.getElementById('app').style.display='flex';
+}
+function updateStaffChip(){
+  var nameEl = document.getElementById('staffChipName');
+  if(nameEl) nameEl.textContent = currentStaffId ? staffName(currentStaffId) : '-';
+}
+
+/* ---------- チェックタブ ---------- */
+function renderCheckTab(){
+  var el = document.getElementById('tab-check');
+  var prog = computeProgress();
+  var tally = computeTally();
+  var cats = activeCategories();
+  var html = '';
+
+  html += '<div class="progress-card">'
+    + '<div class="progress-top"><span class="progress-title">OPEN CHECK</span><span class="progress-date">'+escHtml(fmtDateJp(currentSubscribedDate||todayStr()))+'</span></div>'
+    + '<div class="progress-fig"><span class="frac">'+prog.done+'<span>/'+prog.total+'</span></span><span class="pct">'+prog.pct+'%</span></div>'
+    + '<div class="progress-track"><div class="progress-fill" style="width:'+prog.pct+'%"></div></div>'
+    + (prog.total>0 && prog.done>=prog.total ? '<div class="progress-done-banner">✓ OPEN準備完了</div>' : '')
+    + '</div>';
+
+  html += '<div class="tally-strip">' + tally.map(function(t){
+    return '<div class="tally-chip"><div class="n">'+t.n+'</div><div class="who">'+escHtml(t.name)+'</div></div>';
+  }).join('') + '</div>';
+
+  html += '<div class="filter-bar"><span class="lbl">未完了のみ表示</span><div class="switch'+(filterIncomplete?' on':'')+'" id="filterSwitch"></div></div>';
+
+  if(cats.length===0){
+    html += '<div class="empty-hint">カテゴリがまだありません。管理タブから追加してください。</div>';
+  }
+
+  cats.forEach(function(cat){
+    var catItems = activeItemsForCategory(cat.id);
+    var visibleItems = filterIncomplete ? catItems.filter(function(it){ return !itemState(it.id).checked; }) : catItems;
+    var doneCount = catItems.filter(function(it){ return itemState(it.id).checked; }).length;
+    var collapsed = !!collapsedCats[cat.id];
+    if(filterIncomplete && visibleItems.length===0 && catItems.length>0){ return; }
+
+    html += '<div class="category-block">';
+    html += '<div class="category-header'+(collapsed?' collapsed':'')+'" data-cat="'+escAttr(cat.id)+'">'
+      + '<span class="name"><span class="chev">▼</span>'+escHtml(cat.name)+'</span>'
+      + '<span class="category-count'+(doneCount===catItems.length && catItems.length>0?' done':'')+'">'+doneCount+'/'+catItems.length+'</span>'
+      + '</div>';
+    html += '<div class="category-items'+(collapsed?' collapsed':'')+'">';
+    if(visibleItems.length===0){
+      html += '<div class="empty-hint" style="border:none; padding:16px;">項目がありません</div>';
+    }
+    visibleItems.forEach(function(it){
+      var st = itemState(it.id);
+      html += '<div class="item-row'+(st.checked?' checked':'')+'" data-item="'+escAttr(it.id)+'">'
+        + '<span class="item-check">✓</span>'
+        + '<span class="item-body"><div class="item-name">'+escHtml(it.name)+'</div>'
+        + (st.checked ? '<div class="item-meta"><span class="who">'+escHtml(staffName(st.checkedBy))+'</span> · '+fmtHM(st.checkedAt)+'</div>' : '')
+        + '</span></div>';
+    });
+    html += '</div></div>';
+  });
+
+  el.innerHTML = html;
+}
+
+/* ---------- 管理タブ ---------- */
+function renderAdminTab(){
+  var el = document.getElementById('tab-admin');
+  if(document.activeElement && el.contains(document.activeElement) && document.activeElement.tagName==='INPUT'){
+    return;
+  }
+  var cats = categories.slice().sort(function(a,b){return a.order-b.order;});
+  var activeCats = cats.filter(function(c){return !c.deleted;});
+  var deletedCats = cats.filter(function(c){return c.deleted;});
+
+  var html = '';
+  html += '<div class="section-title">カテゴリ</div><div class="card">';
+  activeCats.forEach(function(c, idx){
+    html += '<div class="admin-row">'
+      + '<div class="admin-move"><button data-catmove="up" data-id="'+escAttr(c.id)+'" '+(idx===0?'disabled':'')+'>▲</button><button data-catmove="down" data-id="'+escAttr(c.id)+'" '+(idx===activeCats.length-1?'disabled':'')+'>▼</button></div>'
+      + '<div class="fields"><input type="text" data-catedit="'+escAttr(c.id)+'" value="'+escAttr(c.name)+'"></div>'
+      + '<button class="btn small danger outline" data-catdel="'+escAttr(c.id)+'">削除</button>'
+      + '</div>';
+  });
+  if(activeCats.length===0){ html += '<div class="empty-hint">カテゴリがありません</div>'; }
+  html += '<div class="add-form"><label class="tiny">新しいカテゴリ</label>'
+    + '<div class="row"><input type="text" id="newCatName" placeholder="例）バックヤード"><button class="btn gold small" id="addCatBtn">追加</button></div></div>';
+  html += '</div>';
+
+  if(deletedCats.length){
+    html += '<div class="section-sub">削除済みカテゴリ</div><div class="card">';
+    deletedCats.forEach(function(c){
+      html += '<div class="admin-row"><div class="fields"><span style="color:var(--text-faint);">'+escHtml(c.name)+'</span></div>'
+        + '<button class="btn small ghost" data-catrestore="'+escAttr(c.id)+'">復元</button></div>';
+    });
+    html += '</div>';
+  }
+
+  html += '<div class="section-title">項目</div>';
+  activeCats.forEach(function(cat){
+    var catItems = items.filter(function(it){ return it.categoryId===cat.id && !it.deleted; }).sort(function(a,b){return a.order-b.order;});
+    html += '<div class="section-sub">'+escHtml(cat.name)+'</div><div class="card">';
+    catItems.forEach(function(it, idx){
+      html += '<div class="admin-row">'
+        + '<div class="admin-move"><button data-itmove="up" data-id="'+escAttr(it.id)+'" '+(idx===0?'disabled':'')+'>▲</button><button data-itmove="down" data-id="'+escAttr(it.id)+'" '+(idx===catItems.length-1?'disabled':'')+'>▼</button></div>'
+        + '<div class="fields"><input type="text" data-itedit="'+escAttr(it.id)+'" value="'+escAttr(it.name)+'"></div>'
+        + '<button class="btn small danger outline" data-itdel="'+escAttr(it.id)+'">削除</button>'
+        + '</div>';
+    });
+    if(catItems.length===0){ html += '<div class="empty-hint">項目がありません</div>'; }
+    html += '<div class="add-form"><label class="tiny">'+escHtml(cat.name)+' に項目を追加</label>'
+      + '<div class="row"><input type="text" data-newitem="'+escAttr(cat.id)+'" placeholder="項目名"><button class="btn gold small" data-additembtn="'+escAttr(cat.id)+'">追加</button></div></div>';
+    html += '</div>';
+  });
+
+  var deletedItems = items.filter(function(it){ return it.deleted; });
+  if(deletedItems.length){
+    html += '<div class="section-sub">削除済み項目</div><div class="card">';
+    deletedItems.forEach(function(it){
+      html += '<div class="admin-row"><div class="fields"><span style="color:var(--text-faint);">'+escHtml(it.name)+'</span></div>'
+        + '<button class="btn small ghost" data-itrestore="'+escAttr(it.id)+'">復元</button></div>';
+    });
+    html += '</div>';
+  }
+
+  html += '<div class="section-title">本日のリセット</div><div class="card">'
+    + '<div class="section-sub" style="margin-top:0;">本日のチェック状態をすべて未完了に戻します。履歴は保持されます。</div>'
+    + '<button class="btn danger block" id="resetTodayBtn">本日のチェックをリセット</button>'
+    + '</div>';
+
+  el.innerHTML = html;
+}
+
+/* ---------- 管理：カテゴリ/項目 CRUD ---------- */
+function persistCategories(){
+  set(ref(db, 'categories'), arrToObj(categories)).catch(function(err){
+    console.error('persistCategories failed', err); toast('保存に失敗しました');
+  });
+}
+function persistItems(){
+  set(ref(db, 'items'), arrToObj(items)).catch(function(err){
+    console.error('persistItems failed', err); toast('保存に失敗しました');
+  });
+}
+function addCategory(name){
+  name=(name||'').trim(); if(!name) return;
+  var maxOrder = categories.reduce(function(m,c){return Math.max(m,c.order||0);},0);
+  categories.push({id:genId('cat'), name:name, order:maxOrder+1, deleted:false});
+  persistCategories(); renderAll();
+}
+function editCategoryName(id, name){
+  name=(name||'').trim(); if(!name) return;
+  categories = categories.map(function(c){ return c.id===id ? Object.assign({},c,{name:name}) : c; });
+  persistCategories();
+}
+function deleteCategory(id){
+  var cat = categories.filter(function(c){return c.id===id;})[0];
+  showConfirmModal({
+    title:'カテゴリを削除',
+    body:(cat?cat.name:'このカテゴリ')+' を削除しますか？含まれる項目の履歴は保持されます。',
+    confirmLabel:'削除する', cancelLabel:'キャンセル', danger:true,
+    onConfirm:function(){
+      categories = categories.map(function(c){ return c.id===id ? Object.assign({},c,{deleted:true}) : c; });
+      persistCategories(); renderAll();
+    }
+  });
+}
+function restoreCategory(id){
+  categories = categories.map(function(c){ return c.id===id ? Object.assign({},c,{deleted:false}) : c; });
+  persistCategories(); renderAll();
+}
+function moveCategory(id, dir){
+  var active = categories.filter(function(c){return !c.deleted;}).sort(function(a,b){return a.order-b.order;});
+  var idx = active.findIndex(function(c){return c.id===id;});
+  var swapIdx = dir==='up' ? idx-1 : idx+1;
+  if(idx<0 || swapIdx<0 || swapIdx>=active.length) return;
+  var a = active[idx], b = active[swapIdx], oa=a.order, ob=b.order;
+  categories = categories.map(function(c){
+    if(c.id===a.id) return Object.assign({},c,{order:ob});
+    if(c.id===b.id) return Object.assign({},c,{order:oa});
+    return c;
+  });
+  persistCategories(); renderAll();
+}
+function addItem(catId, name){
+  name=(name||'').trim(); if(!name) return;
+  var sameCat = items.filter(function(it){return it.categoryId===catId;});
+  var maxOrder = sameCat.reduce(function(m,it){return Math.max(m,it.order||0);},0);
+  items.push({id:genId('i'), categoryId:catId, name:name, order:maxOrder+1, deleted:false});
+  persistItems(); renderAll();
+}
+function editItemName(id, name){
+  name=(name||'').trim(); if(!name) return;
+  items = items.map(function(it){ return it.id===id ? Object.assign({},it,{name:name}) : it; });
+  persistItems();
+}
+function deleteItem(id){
+  var it0 = items.filter(function(it){return it.id===id;})[0];
+  showConfirmModal({
+    title:'項目を削除',
+    body:(it0?it0.name:'この項目')+' を削除しますか？履歴は保持されます。',
+    confirmLabel:'削除する', cancelLabel:'キャンセル', danger:true,
+    onConfirm:function(){
+      items = items.map(function(it){ return it.id===id ? Object.assign({},it,{deleted:true}) : it; });
+      persistItems(); renderAll();
+    }
+  });
+}
+function restoreItem(id){
+  items = items.map(function(it){ return it.id===id ? Object.assign({},it,{deleted:false}) : it; });
+  persistItems(); renderAll();
+}
+function moveItem(id, dir){
+  var it = items.filter(function(x){return x.id===id;})[0];
+  if(!it) return;
+  var siblings = items.filter(function(x){return x.categoryId===it.categoryId && !x.deleted;}).sort(function(a,b){return a.order-b.order;});
+  var idx = siblings.findIndex(function(x){return x.id===id;});
+  var swapIdx = dir==='up'?idx-1:idx+1;
+  if(idx<0||swapIdx<0||swapIdx>=siblings.length) return;
+  var a=siblings[idx], b=siblings[swapIdx], oa=a.order, ob=b.order;
+  items = items.map(function(x){
+    if(x.id===a.id) return Object.assign({},x,{order:ob});
+    if(x.id===b.id) return Object.assign({},x,{order:oa});
+    return x;
+  });
+  persistItems(); renderAll();
+}
+
+/* ---------- 履歴タブ ---------- */
+var historyCache = [];
+function renderHistoryTab(){
+  var el = document.getElementById('tab-history');
+  if(historyView==='detail' && historyDetailDate){
+    renderHistoryDetail(el, historyDetailDate);
+    return;
+  }
+  loadHistoryList();
+  var html = '<div class="section-title">過去の記録</div>';
+  historyCache.forEach(function(d){
+    var doneAll = d.total>0 && d.done>=d.total;
+    html += '<div class="hist-day-row" data-histdate="'+escAttr(d.date)+'">'
+      + '<span class="date">'+escHtml(fmtDateJp(d.date))+'</span>'
+      + '<span class="frac'+(doneAll?' done':'')+'">'+d.done+'/'+d.total+'</span>'
+      + '</div>';
+  });
+  if(historyCache.length===0){ html += '<div class="empty-hint">記録がありません</div>'; }
+  el.innerHTML = html;
+}
+function loadHistoryList(){
+  var total = activeItemsAll().length;
+  var list = Object.keys(allDays).filter(function(d){ return allDays[d]; }).sort().reverse().slice(0, MAX_HISTORY_DAYS).map(function(date){
+    var day = allDays[date];
+    var itemsObj = day.items || {};
+    var done = Object.keys(itemsObj).filter(function(k){ return itemsObj[k] && itemsObj[k].checked; }).length;
+    return {date:date, done:done, total:total, items:itemsObj};
+  });
+  historyCache = list;
+}
+function renderHistoryDetail(el, date){
+  var day = historyCache.filter(function(d){return d.date===date;})[0];
+  var html = '<a class="back-link" id="histBackLink">← 一覧に戻る</a>';
+  html += '<div class="section-title">'+escHtml(fmtDateJp(date))+'</div>';
+  if(!day){ html += '<div class="empty-hint">データがありません</div>'; el.innerHTML = html; return; }
+  var events = [];
+  var itemsObj = day.items || {};
+  Object.keys(itemsObj).forEach(function(id){
+    var itDef = items.filter(function(x){return x.id===id;})[0];
+    var name = itDef ? itDef.name : id;
+    var log = logToArr(itemsObj[id].log);
+    log.forEach(function(ev){ events.push({name:name, a:ev.a, by:ev.by, at:ev.at}); });
+  });
+  events.sort(function(a,b){ return (b.at||0)-(a.at||0); });
+  html += '<div class="card">';
+  if(events.length===0){ html += '<div class="empty-hint">記録がありません</div>'; }
+  events.forEach(function(ev){
+    var actionLabel = ev.a==='c' ? 'チェック' : (ev.a==='u' ? '取り消し' : 'リセット');
+    html += '<div class="hist-event-row"><div><div>'+escHtml(ev.name)+'</div><div class="action">'+escHtml(staffName(ev.by))+' が'+actionLabel+'</div></div>'
+      + '<div class="time">'+fmtHM(ev.at)+'</div></div>';
+  });
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+/* ---------- タブ切替・全体再描画 ---------- */
+function switchTab(tab){
+  currentTab = tab;
+  lsSet('x8oc_tab', tab);
+  document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('tab-'+tab).classList.add('active');
+  document.querySelectorAll('#bottomNav button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-tab')===tab); });
+  document.getElementById('pageTitle').textContent = tab==='check' ? 'OPEN CHECK' : (tab==='history' ? '履歴' : '管理');
+  if(tab==='history'){ historyView='list'; historyCache=[]; }
+  renderCurrentTab();
+}
+function renderCurrentTab(){
+  if(currentTab==='check') renderCheckTab();
+  else if(currentTab==='history') renderHistoryTab();
+  else if(currentTab==='admin') renderAdminTab();
+}
+function renderAll(){
+  updateStaffChip();
+  renderCurrentTab();
+}
+function updateSyncDot(){
+  var dot = document.getElementById('syncDot');
+  var label = document.getElementById('syncLabel');
+  if(!dot) return;
+  if(connected){ dot.className='sync-dot'; if(label) label.textContent='オンライン'; }
+  else { dot.className='sync-dot offline'; if(label) label.textContent='オフライン'; }
+}
+
+/* ---------- モーダル・トースト ---------- */
+function showConfirmModal(opts){
+  var root = document.getElementById('modalRoot');
+  root.innerHTML = '<div class="modal-overlay" id="modalOverlay">'
+    + '<div class="modal-box">'
+    + '<div class="modal-title">'+escHtml(opts.title||'確認')+'</div>'
+    + '<div class="modal-body">'+escHtml(opts.body||'')+'</div>'
+    + '<div class="modal-actions">'
+    + '<button class="btn ghost" id="modalCancelBtn">'+escHtml(opts.cancelLabel||'キャンセル')+'</button>'
+    + '<button class="btn '+(opts.danger?'danger':'gold')+'" id="modalConfirmBtn">'+escHtml(opts.confirmLabel||'OK')+'</button>'
+    + '</div></div></div>';
+  document.getElementById('modalCancelBtn').onclick = closeModal;
+  document.getElementById('modalOverlay').onclick = function(e){ if(e.target.id==='modalOverlay') closeModal(); };
+  document.getElementById('modalConfirmBtn').onclick = function(){ closeModal(); if(opts.onConfirm) opts.onConfirm(); };
+}
+function closeModal(){ document.getElementById('modalRoot').innerHTML = ''; }
+function showTextModal(title, body, text){
+  var root = document.getElementById('modalRoot');
+  root.innerHTML = '<div class="modal-overlay" id="modalOverlay">'
+    + '<div class="modal-box">'
+    + '<div class="modal-title">'+escHtml(title)+'</div>'
+    + '<div class="modal-body">'+escHtml(body)+'</div>'
+    + '<input type="text" id="modalTextInput" value="'+escAttr(text)+'" readonly style="margin-bottom:14px;">'
+    + '<div class="modal-actions"><button class="btn gold block" id="modalCopyBtn">コピーする</button></div>'
+    + '</div></div>';
+  var input = document.getElementById('modalTextInput');
+  input.onclick = function(){ input.select(); };
+  document.getElementById('modalOverlay').onclick = function(e){ if(e.target.id==='modalOverlay') closeModal(); };
+  document.getElementById('modalCopyBtn').onclick = function(){
+    input.select();
+    try{ document.execCommand('copy'); }catch(e){}
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).catch(function(){}); }
+    toast('コピーしました');
+    closeModal();
+  };
+}
+var toastTimer=null;
+function toast(msg){
+  var el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ el.classList.remove('show'); }, 2200);
+}
+function confirmResetToday(){
+  showConfirmModal({
+    title:'本日のリセット（1/2）',
+    body:'本日のチェック状態をすべて未完了に戻します。よろしいですか？',
+    confirmLabel:'次へ', cancelLabel:'キャンセル', danger:true,
+    onConfirm:function(){
+      showConfirmModal({
+        title:'本日のリセット（最終確認）',
+        body:'本当にリセットしますか？この操作は取り消せません（履歴は保持されます）。',
+        confirmLabel:'リセットする', cancelLabel:'キャンセル', danger:true,
+        onConfirm:function(){
+          performResetToday(currentStaffId).then(function(){ toast('本日のチェックをリセットしました'); })
+            .catch(function(e){ console.error(e); toast('リセットに失敗しました'); });
+        }
+      });
+    }
+  });
+}
+
+/* ---------- 共有 ---------- */
+var PUBLIC_URL = 'https://jiggyhouse6666-code.github.io/x8-open-check/';
+function shareApp(){
+  var url = PUBLIC_URL;
+  var shareData = {title:'X8 OPEN CHECK', text:'X8 OPEN CHECK — 営業開始前チェックリスト', url:url};
+  if(navigator.share){
+    navigator.share(shareData).catch(function(err){
+      if(err && err.name==='AbortError') return;
+      fallbackShare(url);
+    });
+  } else {
+    fallbackShare(url);
+  }
+}
+function fallbackShare(url){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(function(){ toast('URLをコピーしました'); })
+      .catch(function(){ showTextModal('共有', 'このURLをコピーしてください', url); });
+  } else {
+    showTextModal('共有', 'このURLをコピーしてください', url);
+  }
+}
+
+/* ---------- イベント配線 ---------- */
+function wireEvents(){
+  document.getElementById('staffGate').addEventListener('click', function(e){
+    var btn = e.target.closest('[data-staff]');
+    if(!btn) return;
+    currentStaffId = btn.getAttribute('data-staff');
+    lsSet('x8oc_staff', currentStaffId);
+    showApp(); renderAll();
+  });
+  document.getElementById('staffChipBtn').addEventListener('click', function(){ showStaffGate(); });
+  document.getElementById('shareBtn').addEventListener('click', shareApp);
+  document.getElementById('bottomNav').addEventListener('click', function(e){
+    var btn = e.target.closest('button[data-tab]');
+    if(btn) switchTab(btn.getAttribute('data-tab'));
+  });
+
+  var tabCheck = document.getElementById('tab-check');
+  tabCheck.addEventListener('click', function(e){
+    var header = e.target.closest('.category-header');
+    if(header){ var catId=header.getAttribute('data-cat'); collapsedCats[catId]=!collapsedCats[catId]; lsSetJSON('x8oc_collapsed', collapsedCats); renderCheckTab(); return; }
+    var row = e.target.closest('.item-row');
+    if(row){ handleItemTap(row.getAttribute('data-item')); return; }
+    var sw = e.target.closest('#filterSwitch');
+    if(sw){ filterIncomplete=!filterIncomplete; lsSet('x8oc_filter', filterIncomplete?'1':'0'); renderCheckTab(); return; }
+  });
+
+  var tabHistory = document.getElementById('tab-history');
+  tabHistory.addEventListener('click', function(e){
+    var row = e.target.closest('.hist-day-row');
+    if(row){ historyDetailDate=row.getAttribute('data-histdate'); historyView='detail'; renderHistoryTab(); return; }
+    var back = e.target.closest('#histBackLink');
+    if(back){ historyView='list'; historyDetailDate=null; renderHistoryTab(); return; }
+  });
+
+  var tabAdmin = document.getElementById('tab-admin');
+  tabAdmin.addEventListener('click', function(e){
+    var t = e.target;
+    var catmove = t.closest('[data-catmove]'); if(catmove){ moveCategory(catmove.getAttribute('data-id'), catmove.getAttribute('data-catmove')); return; }
+    var catdel = t.closest('[data-catdel]'); if(catdel){ deleteCategory(catdel.getAttribute('data-catdel')); return; }
+    var catrestore = t.closest('[data-catrestore]'); if(catrestore){ restoreCategory(catrestore.getAttribute('data-catrestore')); return; }
+    var addCatBtn = t.closest('#addCatBtn');
+    if(addCatBtn){ var input=document.getElementById('newCatName'); addCategory(input.value); input.value=''; return; }
+    var itmove = t.closest('[data-itmove]'); if(itmove){ moveItem(itmove.getAttribute('data-id'), itmove.getAttribute('data-itmove')); return; }
+    var itdel = t.closest('[data-itdel]'); if(itdel){ deleteItem(itdel.getAttribute('data-itdel')); return; }
+    var itrestore = t.closest('[data-itrestore]'); if(itrestore){ restoreItem(itrestore.getAttribute('data-itrestore')); return; }
+    var additembtn = t.closest('[data-additembtn]');
+    if(additembtn){
+      var catId = additembtn.getAttribute('data-additembtn');
+      var inp = tabAdmin.querySelector('[data-newitem="'+CSS.escape(catId)+'"]');
+      if(inp){ addItem(catId, inp.value); inp.value=''; }
+      return;
+    }
+    var resetBtn = t.closest('#resetTodayBtn'); if(resetBtn){ confirmResetToday(); return; }
+  });
+  tabAdmin.addEventListener('change', function(e){
+    var catedit = e.target.closest('[data-catedit]'); if(catedit){ editCategoryName(catedit.getAttribute('data-catedit'), catedit.value); return; }
+    var itedit = e.target.closest('[data-itedit]'); if(itedit){ editItemName(itedit.getAttribute('data-itedit'), itedit.value); return; }
+  });
+
+  setInterval(function(){ checkDateRollover(); }, 20000);
+}
+
+/* ---------- 起動 ---------- */
+function boot(){
+  deviceId = lsGet('x8oc_device');
+  if(!deviceId){ deviceId = genId('dev'); lsSet('x8oc_device', deviceId); }
+  currentStaffId = lsGet('x8oc_staff');
+  collapsedCats = lsGetJSON('x8oc_collapsed', {});
+  filterIncomplete = lsGet('x8oc_filter') === '1';
+
+  renderStaffGate();
+  wireEvents();
+  document.getElementById('appLoading').style.display='none';
+  if(currentStaffId){ showApp(); } else { showStaffGate(); }
+  updateStaffChip();
+  switchTab(lsGet('x8oc_tab') || 'check');
+  updateSyncDot();
+
+  // Firebase接続状態の監視（標準的な .info/connected パス）
+  onValue(ref(db, '.info/connected'), function(snap){
+    connected = snap.val() === true;
+    updateSyncDot();
+  });
+
+  // ルート全体をリアルタイム購読。誰かが書き込む度にここが呼ばれ、
+  // ページ再読み込みなしで即座に画面へ反映される。
+  onValue(rootRef, function(snapshot){
+    var val = snapshot.val();
+    if(!val || !val.categories || Object.keys(val.categories).length===0){
+      categories = DEFAULT_CATEGORIES.slice();
+      items = DEFAULT_ITEMS.slice();
+      allDays = {};
+      set(rootRef, {categories: arrToObj(categories), items: arrToObj(items), days:{}}).catch(function(err){
+        console.error('initial seed failed', err);
+      });
+    } else {
+      categories = objToArr(val.categories);
+      items = objToArr(val.items);
+      allDays = val.days || {};
+    }
+    var today = todayStr();
+    currentSubscribedDate = today;
+    dayDoc = allDays[today] || {date:today, items:{}};
+    renderAll();
+  }, function(err){
+    console.error('onValue error', err);
+    toast('データベースへの接続に失敗しました');
+  });
+}
+
+document.addEventListener('DOMContentLoaded', boot);
+
+</script>
+</body>
+</html>
