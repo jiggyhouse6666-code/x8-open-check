@@ -292,12 +292,14 @@ label.tiny{font-size:10.5px; color:var(--text-faint); display:block; margin-bott
 
   <main>
     <section class="tab-panel" id="tab-check"></section>
+    <section class="tab-panel" id="tab-order"></section>
     <section class="tab-panel" id="tab-history"></section>
     <section class="tab-panel" id="tab-admin"></section>
   </main>
 
   <nav id="bottomNav">
     <button data-tab="check"><span class="icon">✓</span>チェック</button>
+    <button data-tab="order"><span class="icon">📦</span>発注</button>
     <button data-tab="history"><span class="icon">🕘</span>履歴</button>
     <button data-tab="admin"><span class="icon">⚙️</span>管理</button>
   </nav>
@@ -369,6 +371,10 @@ var categories = DEFAULT_CATEGORIES.slice();
 var items = DEFAULT_ITEMS.slice();
 var dayDoc = null;
 var allDays = {};
+var orderCategories = [];
+var orderItems = [];
+var orderDayDoc = null;
+var allOrderDays = {};
 var currentSubscribedDate = null;
 var currentTab = 'check';
 var collapsedCats = {};
@@ -478,6 +484,258 @@ function handleItemTap(itemId){
   else { setItemChecked(itemId, true, currentStaffId); }
 }
 
+/* ---------- 発注タブ（チェックタブと同じ仕組みを、別データで並行運用） ---------- */
+function activeOrderCategories(){
+  return orderCategories.filter(function(c){ return !c.deleted; }).slice().sort(function(a,b){ return a.order-b.order; });
+}
+function activeOrderItemsForCategory(catId){
+  return orderItems.filter(function(it){ return !it.deleted && it.categoryId===catId; }).slice().sort(function(a,b){ return a.order-b.order; });
+}
+function activeOrderItemsAll(){
+  return orderItems.filter(function(it){ return !it.deleted; });
+}
+function orderItemState(itemId){
+  var d = (orderDayDoc && orderDayDoc.items) ? orderDayDoc.items[itemId] : null;
+  if(!d) return {checked:false, checkedBy:null, checkedAt:null, log:[]};
+  return { checked: !!d.checked, checkedBy: d.checkedBy || null, checkedAt: d.checkedAt || null, log: logToArr(d.log) };
+}
+function computeOrderProgress(){
+  var all = activeOrderItemsAll();
+  var total = all.length, done = 0;
+  for(var i=0;i<all.length;i++){ if(orderItemState(all[i].id).checked) done++; }
+  return {done:done, total:total, pct: total ? Math.round(done/total*100) : 0};
+}
+function computeOrderTally(){
+  var counts = {};
+  STAFF.forEach(function(s){ counts[s.id]=0; });
+  var all = activeOrderItemsAll();
+  for(var i=0;i<all.length;i++){
+    var st = orderItemState(all[i].id);
+    if(st.checked && st.checkedBy && counts.hasOwnProperty(st.checkedBy)) counts[st.checkedBy]++;
+  }
+  return STAFF.map(function(s){ return {id:s.id, name:s.name, n:counts[s.id]||0}; });
+}
+function setOrderItemChecked(itemId, checked, staffId){
+  var ts = Date.now();
+  var date = todayStr();
+  checkDateRollover();
+  if(!orderDayDoc) orderDayDoc = {date:date, items:{}};
+  if(!orderDayDoc.items) orderDayDoc.items = {};
+  var existing = orderDayDoc.items[itemId] || {checked:false, checkedBy:null, checkedAt:null, log:{}};
+  var logKey = 'l_' + genId('x');
+  var newLog = Object.assign({}, existing.log||{});
+  newLog[logKey] = {a: checked?'c':'u', by: staffId, at: ts};
+  orderDayDoc.items[itemId] = {checked:checked, checkedBy: checked?staffId:null, checkedAt: checked?ts:null, log:newLog};
+  allOrderDays[date] = orderDayDoc;
+  renderAll();
+
+  var updates = {};
+  updates['orderDays/'+date+'/items/'+itemId+'/checked'] = checked;
+  updates['orderDays/'+date+'/items/'+itemId+'/checkedBy'] = checked ? staffId : null;
+  updates['orderDays/'+date+'/items/'+itemId+'/checkedAt'] = checked ? ts : null;
+  updates['orderDays/'+date+'/items/'+itemId+'/log/'+logKey] = {a: checked?'c':'u', by: staffId, at: ts};
+  update(rootRef, updates).catch(function(err){
+    console.error('write failed', err);
+    toast('保存に失敗しました。通信環境を確認してください');
+  });
+}
+function requestOrderUncheck(itemId){
+  var itDef = orderItems.filter(function(x){return x.id===itemId;})[0];
+  showConfirmModal({
+    title: '確認',
+    body: (itDef?itDef.name:'この項目') + ' のチェックを取り消しますか？',
+    confirmLabel: '取り消す', cancelLabel: 'キャンセル', danger: true,
+    onConfirm: function(){ setOrderItemChecked(itemId, false, currentStaffId); }
+  });
+}
+function handleOrderItemTap(itemId){
+  if(!currentStaffId) return;
+  var st = orderItemState(itemId);
+  if(st.checked){ requestOrderUncheck(itemId); }
+  else { setOrderItemChecked(itemId, true, currentStaffId); }
+}
+function performResetOrderToday(staffId){
+  var date = todayStr();
+  var ts = Date.now();
+  var day = allOrderDays[date] || {date:date, items:{}};
+  var updates = {};
+  Object.keys(day.items||{}).forEach(function(id){
+    var it = day.items[id];
+    var logKey = 'l_' + genId('x');
+    updates['orderDays/'+date+'/items/'+id+'/checked'] = false;
+    updates['orderDays/'+date+'/items/'+id+'/checkedBy'] = null;
+    updates['orderDays/'+date+'/items/'+id+'/checkedAt'] = null;
+    updates['orderDays/'+date+'/items/'+id+'/log/'+logKey] = {a:'r', by:staffId, at:ts};
+    var newLog = Object.assign({}, it.log||{});
+    newLog[logKey] = {a:'r', by:staffId, at:ts};
+    day.items[id] = {checked:false, checkedBy:null, checkedAt:null, log:newLog};
+  });
+  allOrderDays[date] = day;
+  orderDayDoc = day;
+  renderAll();
+  return update(rootRef, updates);
+}
+function persistOrderCategories(){
+  set(ref(db, 'orderCategories'), arrToObj(orderCategories)).catch(function(err){
+    console.error('persistOrderCategories failed', err); toast('保存に失敗しました');
+  });
+}
+function persistOrderItems(){
+  set(ref(db, 'orderItems'), arrToObj(orderItems)).catch(function(err){
+    console.error('persistOrderItems failed', err); toast('保存に失敗しました');
+  });
+}
+function addOrderCategory(name){
+  name=(name||'').trim(); if(!name) return;
+  var maxOrder = orderCategories.reduce(function(m,c){return Math.max(m,c.order||0);},0);
+  orderCategories.push({id:genId('ocat'), name:name, order:maxOrder+1, deleted:false});
+  persistOrderCategories(); renderAll();
+}
+function editOrderCategoryName(id, name){
+  name=(name||'').trim(); if(!name) return;
+  orderCategories = orderCategories.map(function(c){ return c.id===id ? Object.assign({},c,{name:name}) : c; });
+  persistOrderCategories();
+}
+function deleteOrderCategory(id){
+  var cat = orderCategories.filter(function(c){return c.id===id;})[0];
+  showConfirmModal({
+    title:'カテゴリを削除',
+    body:(cat?cat.name:'このカテゴリ')+' を削除しますか？含まれる項目の履歴は保持されます。',
+    confirmLabel:'削除する', cancelLabel:'キャンセル', danger:true,
+    onConfirm:function(){
+      orderCategories = orderCategories.map(function(c){ return c.id===id ? Object.assign({},c,{deleted:true}) : c; });
+      persistOrderCategories(); renderAll();
+    }
+  });
+}
+function restoreOrderCategory(id){
+  orderCategories = orderCategories.map(function(c){ return c.id===id ? Object.assign({},c,{deleted:false}) : c; });
+  persistOrderCategories(); renderAll();
+}
+function moveOrderCategory(id, dir){
+  var active = orderCategories.filter(function(c){return !c.deleted;}).sort(function(a,b){return a.order-b.order;});
+  var idx = active.findIndex(function(c){return c.id===id;});
+  var swapIdx = dir==='up' ? idx-1 : idx+1;
+  if(idx<0 || swapIdx<0 || swapIdx>=active.length) return;
+  var a = active[idx], b = active[swapIdx], oa=a.order, ob=b.order;
+  orderCategories = orderCategories.map(function(c){
+    if(c.id===a.id) return Object.assign({},c,{order:ob});
+    if(c.id===b.id) return Object.assign({},c,{order:oa});
+    return c;
+  });
+  persistOrderCategories(); renderAll();
+}
+function addOrderItem(catId, name){
+  name=(name||'').trim(); if(!name) return;
+  var sameCat = orderItems.filter(function(it){return it.categoryId===catId;});
+  var maxOrder = sameCat.reduce(function(m,it){return Math.max(m,it.order||0);},0);
+  orderItems.push({id:genId('oi'), categoryId:catId, name:name, order:maxOrder+1, deleted:false});
+  persistOrderItems(); renderAll();
+}
+function editOrderItemName(id, name){
+  name=(name||'').trim(); if(!name) return;
+  orderItems = orderItems.map(function(it){ return it.id===id ? Object.assign({},it,{name:name}) : it; });
+  persistOrderItems();
+}
+function deleteOrderItem(id){
+  var it0 = orderItems.filter(function(it){return it.id===id;})[0];
+  showConfirmModal({
+    title:'項目を削除',
+    body:(it0?it0.name:'この項目')+' を削除しますか？履歴は保持されます。',
+    confirmLabel:'削除する', cancelLabel:'キャンセル', danger:true,
+    onConfirm:function(){
+      orderItems = orderItems.map(function(it){ return it.id===id ? Object.assign({},it,{deleted:true}) : it; });
+      persistOrderItems(); renderAll();
+    }
+  });
+}
+function restoreOrderItem(id){
+  orderItems = orderItems.map(function(it){ return it.id===id ? Object.assign({},it,{deleted:false}) : it; });
+  persistOrderItems(); renderAll();
+}
+function moveOrderItem(id, dir){
+  var it = orderItems.filter(function(x){return x.id===id;})[0];
+  if(!it) return;
+  var siblings = orderItems.filter(function(x){return x.categoryId===it.categoryId && !x.deleted;}).sort(function(a,b){return a.order-b.order;});
+  var idx = siblings.findIndex(function(x){return x.id===id;});
+  var swapIdx = dir==='up'?idx-1:idx+1;
+  if(idx<0||swapIdx<0||swapIdx>=siblings.length) return;
+  var a=siblings[idx], b=siblings[swapIdx], oa=a.order, ob=b.order;
+  orderItems = orderItems.map(function(x){
+    if(x.id===a.id) return Object.assign({},x,{order:ob});
+    if(x.id===b.id) return Object.assign({},x,{order:oa});
+    return x;
+  });
+  persistOrderItems(); renderAll();
+}
+function confirmResetOrderToday(){
+  showConfirmModal({
+    title:'本日の発注チェックをリセット（1/2）',
+    body:'本日の発注チェック状態をすべて未完了に戻します。よろしいですか？',
+    confirmLabel:'次へ', cancelLabel:'キャンセル', danger:true,
+    onConfirm:function(){
+      showConfirmModal({
+        title:'本日のリセット（最終確認）',
+        body:'本当にリセットしますか？この操作は取り消せません（履歴は保持されます）。',
+        confirmLabel:'リセットする', cancelLabel:'キャンセル', danger:true,
+        onConfirm:function(){
+          performResetOrderToday(currentStaffId).then(function(){ toast('本日の発注チェックをリセットしました'); })
+            .catch(function(e){ console.error(e); toast('リセットに失敗しました'); });
+        }
+      });
+    }
+  });
+}
+function renderOrderTab(){
+  var el = document.getElementById('tab-order');
+  var prog = computeOrderProgress();
+  var tally = computeOrderTally();
+  var cats = activeOrderCategories();
+  var html = '';
+
+  html += '<div class="progress-card">'
+    + '<div class="progress-top"><span class="progress-title">発注チェック</span><span class="progress-date">'+escHtml(fmtDateJp(currentSubscribedDate||todayStr()))+'</span></div>'
+    + '<div class="progress-fig"><span class="frac">'+prog.done+'<span>/'+prog.total+'</span></span><span class="pct">'+prog.pct+'%</span></div>'
+    + '<div class="progress-track"><div class="progress-fill" style="width:'+prog.pct+'%"></div></div>'
+    + (prog.total>0 && prog.done>=prog.total ? '<div class="progress-done-banner">✓ 発注チェック完了</div>' : '')
+    + '</div>';
+
+  html += '<div class="tally-strip">' + tally.map(function(t){
+    return '<div class="tally-chip"><div class="n">'+t.n+'</div><div class="who">'+escHtml(t.name)+'</div></div>';
+  }).join('') + '</div>';
+
+  if(cats.length===0){
+    html += '<div class="empty-hint">発注カテゴリがまだありません。管理タブの「発注項目」から追加してください。</div>';
+  }
+
+  cats.forEach(function(cat){
+    var catItems = activeOrderItemsForCategory(cat.id);
+    var doneCount = catItems.filter(function(it){ return orderItemState(it.id).checked; }).length;
+    var collapsed = !!collapsedCats['order_'+cat.id];
+
+    html += '<div class="category-block">';
+    html += '<div class="category-header'+(collapsed?' collapsed':'')+'" data-ordercat="'+escAttr(cat.id)+'">'
+      + '<span class="name"><span class="chev">▼</span>'+escHtml(cat.name)+'</span>'
+      + '<span class="category-count'+(doneCount===catItems.length && catItems.length>0?' done':'')+'">'+doneCount+'/'+catItems.length+'</span>'
+      + '</div>';
+    html += '<div class="category-items'+(collapsed?' collapsed':'')+'">';
+    if(catItems.length===0){
+      html += '<div class="empty-hint" style="border:none; padding:16px;">項目がありません</div>';
+    }
+    catItems.forEach(function(it){
+      var st = orderItemState(it.id);
+      html += '<div class="item-row'+(st.checked?' checked':'')+'" data-orderitem="'+escAttr(it.id)+'">'
+        + '<span class="item-check">✓</span>'
+        + '<span class="item-body"><div class="item-name">'+escHtml(it.name)+'</div>'
+        + (st.checked ? '<div class="item-meta"><span class="who">'+escHtml(staffName(st.checkedBy))+'</span> · '+fmtHM(st.checkedAt)+'</div>' : '')
+        + '</span></div>';
+    });
+    html += '</div></div>';
+  });
+
+  el.innerHTML = html;
+}
+
 function performResetToday(staffId){
   var date = todayStr();
   var ts = Date.now();
@@ -506,6 +764,8 @@ function checkDateRollover(){
     currentSubscribedDate = date;
     dayDoc = allDays[date] || {date:date, items:{}};
     allDays[date] = dayDoc;
+    orderDayDoc = allOrderDays[date] || {date:date, items:{}};
+    allOrderDays[date] = orderDayDoc;
     renderAll();
   }
 }
@@ -649,9 +909,67 @@ function renderAdminTab(){
     html += '</div>';
   }
 
+  /* ---------- 発注項目の管理（チェック項目と同じ仕組みを別データで） ---------- */
+  var oCats = orderCategories.slice().sort(function(a,b){return a.order-b.order;});
+  var oActiveCats = oCats.filter(function(c){return !c.deleted;});
+  var oDeletedCats = oCats.filter(function(c){return c.deleted;});
+
+  html += '<div class="section-title">発注項目（発注タブに表示）</div><div class="card">';
+  oActiveCats.forEach(function(c, idx){
+    html += '<div class="admin-row">'
+      + '<div class="admin-move"><button data-ocatmove="up" data-id="'+escAttr(c.id)+'" '+(idx===0?'disabled':'')+'>▲</button><button data-ocatmove="down" data-id="'+escAttr(c.id)+'" '+(idx===oActiveCats.length-1?'disabled':'')+'>▼</button></div>'
+      + '<div class="fields"><input type="text" data-ocatedit="'+escAttr(c.id)+'" value="'+escAttr(c.name)+'"></div>'
+      + '<button class="btn small danger outline" data-ocatdel="'+escAttr(c.id)+'">削除</button>'
+      + '</div>';
+  });
+  if(oActiveCats.length===0){ html += '<div class="empty-hint">発注カテゴリがありません</div>'; }
+  html += '<div class="add-form"><label class="tiny">新しい発注カテゴリ</label>'
+    + '<div class="row"><input type="text" id="newOrderCatName" placeholder="例）ドリンク発注"><button class="btn gold small" id="addOrderCatBtn">追加</button></div></div>';
+  html += '</div>';
+
+  if(oDeletedCats.length){
+    html += '<div class="section-sub">削除済み発注カテゴリ</div><div class="card">';
+    oDeletedCats.forEach(function(c){
+      html += '<div class="admin-row"><div class="fields"><span style="color:var(--text-faint);">'+escHtml(c.name)+'</span></div>'
+        + '<button class="btn small ghost" data-ocatrestore="'+escAttr(c.id)+'">復元</button></div>';
+    });
+    html += '</div>';
+  }
+
+  oActiveCats.forEach(function(cat){
+    var catItems = orderItems.filter(function(it){ return it.categoryId===cat.id && !it.deleted; }).sort(function(a,b){return a.order-b.order;});
+    html += '<div class="section-sub">'+escHtml(cat.name)+'（発注）</div><div class="card">';
+    catItems.forEach(function(it, idx){
+      html += '<div class="admin-row">'
+        + '<div class="admin-move"><button data-oitmove="up" data-id="'+escAttr(it.id)+'" '+(idx===0?'disabled':'')+'>▲</button><button data-oitmove="down" data-id="'+escAttr(it.id)+'" '+(idx===catItems.length-1?'disabled':'')+'>▼</button></div>'
+        + '<div class="fields"><input type="text" data-oitedit="'+escAttr(it.id)+'" value="'+escAttr(it.name)+'"></div>'
+        + '<button class="btn small danger outline" data-oitdel="'+escAttr(it.id)+'">削除</button>'
+        + '</div>';
+    });
+    if(catItems.length===0){ html += '<div class="empty-hint">項目がありません</div>'; }
+    html += '<div class="add-form"><label class="tiny">'+escHtml(cat.name)+' に発注項目を追加</label>'
+      + '<div class="row"><input type="text" data-neworderitem="'+escAttr(cat.id)+'" placeholder="項目名"><button class="btn gold small" data-addorderitembtn="'+escAttr(cat.id)+'">追加</button></div></div>';
+    html += '</div>';
+  });
+
+  var oDeletedItems = orderItems.filter(function(it){ return it.deleted; });
+  if(oDeletedItems.length){
+    html += '<div class="section-sub">削除済み発注項目</div><div class="card">';
+    oDeletedItems.forEach(function(it){
+      html += '<div class="admin-row"><div class="fields"><span style="color:var(--text-faint);">'+escHtml(it.name)+'</span></div>'
+        + '<button class="btn small ghost" data-oitrestore="'+escAttr(it.id)+'">復元</button></div>';
+    });
+    html += '</div>';
+  }
+
   html += '<div class="section-title">本日のリセット</div><div class="card">'
     + '<div class="section-sub" style="margin-top:0;">本日のチェック状態をすべて未完了に戻します。履歴は保持されます。</div>'
     + '<button class="btn danger block" id="resetTodayBtn">本日のチェックをリセット</button>'
+    + '</div>';
+
+  html += '<div class="section-title">本日の発注チェックのリセット</div><div class="card">'
+    + '<div class="section-sub" style="margin-top:0;">本日の発注チェック状態をすべて未完了に戻します。履歴は保持されます。</div>'
+    + '<button class="btn danger block" id="resetOrderTodayBtn">本日の発注チェックをリセット</button>'
     + '</div>';
 
   el.innerHTML = html;
@@ -814,12 +1132,13 @@ function switchTab(tab){
   document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
   document.getElementById('tab-'+tab).classList.add('active');
   document.querySelectorAll('#bottomNav button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-tab')===tab); });
-  document.getElementById('pageTitle').textContent = tab==='check' ? 'OPEN CHECK' : (tab==='history' ? '履歴' : '管理');
+  document.getElementById('pageTitle').textContent = tab==='check' ? 'OPEN CHECK' : (tab==='order' ? '発注チェック' : (tab==='history' ? '履歴' : '管理'));
   if(tab==='history'){ historyView='list'; historyCache=[]; }
   renderCurrentTab();
 }
 function renderCurrentTab(){
   if(currentTab==='check') renderCheckTab();
+  else if(currentTab==='order') renderOrderTab();
   else if(currentTab==='history') renderHistoryTab();
   else if(currentTab==='admin') renderAdminTab();
 }
@@ -955,6 +1274,14 @@ function wireEvents(){
     if(back){ historyView='list'; historyDetailDate=null; renderHistoryTab(); return; }
   });
 
+  var tabOrder = document.getElementById('tab-order');
+  tabOrder.addEventListener('click', function(e){
+    var header = e.target.closest('.category-header');
+    if(header){ var catId=header.getAttribute('data-ordercat'); collapsedCats['order_'+catId]=!collapsedCats['order_'+catId]; lsSetJSON('x8oc_collapsed', collapsedCats); renderOrderTab(); return; }
+    var row = e.target.closest('.item-row');
+    if(row){ handleOrderItemTap(row.getAttribute('data-orderitem')); return; }
+  });
+
   var tabAdmin = document.getElementById('tab-admin');
   tabAdmin.addEventListener('click', function(e){
     var t = e.target;
@@ -974,10 +1301,29 @@ function wireEvents(){
       return;
     }
     var resetBtn = t.closest('#resetTodayBtn'); if(resetBtn){ confirmResetToday(); return; }
+
+    var ocatmove = t.closest('[data-ocatmove]'); if(ocatmove){ moveOrderCategory(ocatmove.getAttribute('data-id'), ocatmove.getAttribute('data-ocatmove')); return; }
+    var ocatdel = t.closest('[data-ocatdel]'); if(ocatdel){ deleteOrderCategory(ocatdel.getAttribute('data-ocatdel')); return; }
+    var ocatrestore = t.closest('[data-ocatrestore]'); if(ocatrestore){ restoreOrderCategory(ocatrestore.getAttribute('data-ocatrestore')); return; }
+    var addOrderCatBtn = t.closest('#addOrderCatBtn');
+    if(addOrderCatBtn){ var oInput=document.getElementById('newOrderCatName'); addOrderCategory(oInput.value); oInput.value=''; return; }
+    var oitmove = t.closest('[data-oitmove]'); if(oitmove){ moveOrderItem(oitmove.getAttribute('data-id'), oitmove.getAttribute('data-oitmove')); return; }
+    var oitdel = t.closest('[data-oitdel]'); if(oitdel){ deleteOrderItem(oitdel.getAttribute('data-oitdel')); return; }
+    var oitrestore = t.closest('[data-oitrestore]'); if(oitrestore){ restoreOrderItem(oitrestore.getAttribute('data-oitrestore')); return; }
+    var addorderitembtn = t.closest('[data-addorderitembtn]');
+    if(addorderitembtn){
+      var oCatId = addorderitembtn.getAttribute('data-addorderitembtn');
+      var oInp = tabAdmin.querySelector('[data-neworderitem="'+CSS.escape(oCatId)+'"]');
+      if(oInp){ addOrderItem(oCatId, oInp.value); oInp.value=''; }
+      return;
+    }
+    var resetOrderBtn = t.closest('#resetOrderTodayBtn'); if(resetOrderBtn){ confirmResetOrderToday(); return; }
   });
   tabAdmin.addEventListener('change', function(e){
     var catedit = e.target.closest('[data-catedit]'); if(catedit){ editCategoryName(catedit.getAttribute('data-catedit'), catedit.value); return; }
     var itedit = e.target.closest('[data-itedit]'); if(itedit){ editItemName(itedit.getAttribute('data-itedit'), itedit.value); return; }
+    var ocatedit = e.target.closest('[data-ocatedit]'); if(ocatedit){ editOrderCategoryName(ocatedit.getAttribute('data-ocatedit'), ocatedit.value); return; }
+    var oitedit = e.target.closest('[data-oitedit]'); if(oitedit){ editOrderItemName(oitedit.getAttribute('data-oitedit'), oitedit.value); return; }
   });
 
   setInterval(function(){ checkDateRollover(); }, 20000);
@@ -1021,9 +1367,13 @@ function boot(){
       items = objToArr(val.items);
       allDays = val.days || {};
     }
+    orderCategories = (val && val.orderCategories) ? objToArr(val.orderCategories) : [];
+    orderItems = (val && val.orderItems) ? objToArr(val.orderItems) : [];
+    allOrderDays = (val && val.orderDays) ? val.orderDays : {};
     var today = todayStr();
     currentSubscribedDate = today;
     dayDoc = allDays[today] || {date:today, items:{}};
+    orderDayDoc = allOrderDays[today] || {date:today, items:{}};
     renderAll();
   }, function(err){
     console.error('onValue error', err);
