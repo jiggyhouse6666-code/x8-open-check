@@ -228,6 +228,14 @@ label.tiny{font-size:10.5px; color:var(--text-faint); display:block; margin-bott
 .hist-event-row .action{color:var(--text-faint); font-size:11px; margin-top:2px;}
 .hist-event-row .time{color:var(--text-faint); font-size:11.5px; text-align:right; white-space:nowrap;}
 .back-link{display:inline-flex; align-items:center; gap:5px; color:var(--gold); font-size:13px; font-weight:700; margin-bottom:14px;}
+.hist-allclear{color:var(--success); font-size:13px; text-align:center; padding:14px 10px; border:1px dashed var(--success); border-radius:var(--radius); background:var(--success-soft); margin-bottom:12px; font-weight:700;}
+.card.hist-missing-card{border-color:var(--danger); background:var(--danger-soft);}
+.hist-missing-count{color:var(--danger); font-weight:700; font-size:13.5px; margin-bottom:8px;}
+.hist-missing-catname{color:var(--text-dim); font-size:11px; font-weight:700; letter-spacing:.5px; margin:12px 0 4px;}
+.hist-missing-catname:first-of-type{margin-top:0;}
+.hist-missing-item{color:var(--text); font-size:13px; padding:6px 0 6px 16px; position:relative; border-bottom:1px solid var(--border);}
+.hist-missing-item:last-child{border-bottom:none;}
+.hist-missing-item::before{content:'✕'; position:absolute; left:0; top:7px; color:var(--danger); font-size:10.5px; font-weight:700;}
 
 /* ===== admin ===== */
 .admin-row{display:flex; align-items:center; gap:8px; padding:10px 4px; border-bottom:1px solid var(--border);}
@@ -1105,8 +1113,36 @@ function renderHistoryDetail(el, date){
   var html = '<a class="back-link" id="histBackLink">← 一覧に戻る</a>';
   html += '<div class="section-title">'+escHtml(fmtDateJp(date))+'</div>';
   if(!day){ html += '<div class="empty-hint">データがありません</div>'; el.innerHTML = html; return; }
-  var events = [];
   var itemsObj = day.items || {};
+
+  /* 未チェック項目をカテゴリごとに抽出 */
+  var missingGroups = [];
+  activeCategories().forEach(function(cat){
+    var missingItems = activeItemsForCategory(cat.id).filter(function(it){
+      var st = itemsObj[it.id];
+      return !(st && st.checked);
+    });
+    if(missingItems.length>0){ missingGroups.push({cat:cat, items:missingItems}); }
+  });
+  var missingTotal = missingGroups.reduce(function(sum,g){ return sum+g.items.length; }, 0);
+
+  html += '<div class="section-title">未チェック項目</div>';
+  if(missingTotal===0){
+    html += '<div class="hist-allclear">✓ この日は全項目チェック済みでした</div>';
+  } else {
+    html += '<div class="card hist-missing-card">';
+    html += '<div class="hist-missing-count">未チェック '+missingTotal+'件</div>';
+    missingGroups.forEach(function(g){
+      html += '<div class="hist-missing-catname">'+escHtml(g.cat.name)+'</div>';
+      g.items.forEach(function(it){
+        html += '<div class="hist-missing-item">'+escHtml(it.name)+'</div>';
+      });
+    });
+    html += '</div>';
+  }
+
+  html += '<div class="section-title">チェック履歴</div>';
+  var events = [];
   Object.keys(itemsObj).forEach(function(id){
     var itDef = items.filter(function(x){return x.id===id;})[0];
     var name = itDef ? itDef.name : id;
