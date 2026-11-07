@@ -1062,21 +1062,24 @@ function applyNewList(){
     title:'新しいリストに入れ替え',
     body:'今ある項目 '+nOld+' 件を「削除済み」に移して、新しいリストに入れ替えます。あとで復元できます。',
     confirmLabel:'入れ替える', cancelLabel:'キャンセル', danger:false,
-    onConfirm:function(){
-      var now = Date.now();
-      categories = categories.map(function(c){ return Object.assign({},c,{deleted:true}); });
-      items = items.map(function(it){ return Object.assign({},it,{deleted:true}); });
-      NEW_LIST.forEach(function(g, gi){
-        var cid = 'cat_n'+now+'_'+gi;
-        categories.push({id:cid, name:g.name, order:100+gi, deleted:false});
-        g.items.forEach(function(nm, ii){
-          items.push({id:'i_n'+now+'_'+gi+'_'+ii, categoryId:cid, name:nm, order:ii+1, owner:g.owner, deleted:false});
-        });
-      });
-      persistCategories(); persistItems(); renderAll(); toast('新しいリストに入れ替えました');
-    }
+    onConfirm:function(){ doApplyNewList(); toast('新しいリストに入れ替えました'); }
   });
 }
+function doApplyNewList(){
+  var now = Date.now();
+  categories = categories.map(function(c){ return Object.assign({},c,{deleted:true}); });
+  items = items.map(function(it){ return Object.assign({},it,{deleted:true}); });
+  NEW_LIST.forEach(function(g, gi){
+    var cid = 'cat_n'+now+'_'+gi;
+    categories.push({id:cid, name:g.name, order:100+gi, deleted:false});
+    g.items.forEach(function(nm, ii){
+      items.push({id:'i_n'+now+'_'+gi+'_'+ii, categoryId:cid, name:nm, order:ii+1, owner:g.owner, deleted:false});
+    });
+  });
+  persistCategories(); persistItems();
+  set(ref(db, 'listVersion'), LIST_VERSION).catch(function(){});
+}
+var LIST_VERSION = 'v2-owner-20261107';
 function editItemName(id, name){
   name=(name||'').trim(); if(!name) return;
   items = items.map(function(it){ return it.id===id ? Object.assign({},it,{name:name}) : it; });
@@ -1440,6 +1443,11 @@ function boot(){
       categories = objToArr(val.categories);
       items = objToArr(val.items);
       allDays = val.days || {};
+      /* 担当者つきの新リストへ、最初に開いた1台が自動で1回だけ入れ替える */
+      if(val.listVersion !== LIST_VERSION && !window.__listApplying){
+        window.__listApplying = true;
+        doApplyNewList();
+      }
     }
     orderCategories = (val && val.orderCategories) ? objToArr(val.orderCategories) : [];
     orderItems = (val && val.orderItems) ? objToArr(val.orderItems) : [];
