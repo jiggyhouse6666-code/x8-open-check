@@ -1066,20 +1066,27 @@ function applyNewList(){
   });
 }
 function doApplyNewList(){
-  var now = Date.now();
-  categories = categories.map(function(c){ return Object.assign({},c,{deleted:true}); });
-  items = items.map(function(it){ return Object.assign({},it,{deleted:true}); });
+  /* ID は固定。何回入れ替えても同じ項目に上書きされ、重複しない */
+  var keepCat = {}, keepIt = {};
+  var newCats = [], newItems = [];
   NEW_LIST.forEach(function(g, gi){
-    var cid = 'cat_n'+now+'_'+gi;
-    categories.push({id:cid, name:g.name, order:100+gi, deleted:false});
+    var cid = 'cat_v3_'+gi;
+    keepCat[cid] = 1;
+    newCats.push({id:cid, name:g.name, order:100+gi, deleted:false});
     g.items.forEach(function(nm, ii){
-      items.push({id:'i_n'+now+'_'+gi+'_'+ii, categoryId:cid, name:nm, order:ii+1, owner:g.owner, deleted:false});
+      var iid = 'i_v3_'+gi+'_'+ii;
+      keepIt[iid] = 1;
+      newItems.push({id:iid, categoryId:cid, name:nm, order:ii+1, owner:g.owner, deleted:false});
     });
   });
-  persistCategories(); persistItems();
-  set(ref(db, 'listVersion'), LIST_VERSION).catch(function(){});
+  categories = categories.filter(function(c){ return !keepCat[c.id]; }).map(function(c){ return Object.assign({},c,{deleted:true}); }).concat(newCats);
+  items = items.filter(function(it){ return !keepIt[it.id]; }).map(function(it){ return Object.assign({},it,{deleted:true}); }).concat(newItems);
+  /* 項目・カテゴリ・版番号を1回でまとめて書き込む */
+  update(rootRef, {categories: arrToObj(categories), items: arrToObj(items), listVersion: LIST_VERSION}).catch(function(err){
+    console.error('applyNewList failed', err); toast('保存に失敗しました');
+  });
 }
-var LIST_VERSION = 'v2-owner-20261107';
+var LIST_VERSION = 'v3-owner-20261107';
 function editItemName(id, name){
   name=(name||'').trim(); if(!name) return;
   items = items.map(function(it){ return it.id===id ? Object.assign({},it,{name:name}) : it; });
